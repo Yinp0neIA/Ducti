@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DuctiTech</title>
+    <meta name="description" content="DuctiTech: reparación de consolas (Xbox, PlayStation, Nintendo), computadoras, laptops, celulares y tabletas en Pachuca de Soto, con garantía y diagnóstico transparente." />
+    <meta name="theme-color" content="#0A192F" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="DuctiTech - Reparación de electrónicos" />
+    <meta property="og:description" content="Especialistas en consolas, computadoras, celulares y más. Diagnóstico preciso, repuestos originales y garantía." />
+    <meta property="og:image" content="assets/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/neon-circuit.css" />
+
+    <style>
+        :root {
+            --gif-pacman-size: 130px;
+            --gif-main-size: 68px;
+            --gif-accent-size: 52px;
+            --gif-small-size: 38px;
+        }
+
+        .floating-gifs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-gifs .gif-float {
+            position: absolute;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            animation: floatAnim 14s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 8px rgba(19, 178, 251, 0.2));
+        }
+
+        /* PACMAN — protagonista, el más grande */
+        .floating-gifs .gif-pacman {
+            width: var(--gif-pacman-size);
+            opacity: 0.6;
+        }
+
+        /* Fantasmas azul/naranja — escoltas, tamaño medio */
+        .floating-gifs .gif-main {
+            width: var(--gif-main-size);
+            opacity: 0.35;
+        }
+
+        /* Fantasma rosa — acento */
+        .floating-gifs .gif-accent {
+            width: var(--gif-accent-size);
+            opacity: 0.3;
+        }
+
+        /* Fantasma rojo — acento pequeño, más discreto */
+        .floating-gifs .gif-small {
+            width: var(--gif-small-size);
+            opacity: 0.2;
+        }
+
+        /* ---- Posiciones específicas (bien distribuidas) ---- */
+
+        /* Fantasma azul (superior izquierda) */
+        .floating-gifs .gif-1 {
+            top: 6%;
+            left: 3%;
+            animation-duration: 18s;
+            animation-delay: -2s;
+        }
+
+        /* Fantasma naranja (superior derecha) */
+        .floating-gifs .gif-2 {
+            top: 8%;
+            right: 4%;
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+
+        /* PACMAN (inferior izquierda, el más grande) */
+        .floating-gifs .gif-3 {
+            bottom: 12%;
+            left: 5%;
+            animation-duration: 24s;
+            animation-delay: -10s;
+        }
+
+        /* Fantasma rosa (inferior derecha) */
+        .floating-gifs .gif-4 {
+            bottom: 15%;
+            right: 5%;
+            animation-duration: 20s;
+            animation-delay: -8s;
+        }
+
+        /* Fantasma rojo (zona derecha media-baja) */
+        .floating-gifs .gif-5 {
+            top: 55%;
+            right: 6%;
+            animation-duration: 16s;
+            animation-delay: -3s;
+        }
+
+        /* Animación de flotación */
+        @keyframes floatAnim {
+            0% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(20px, -12px) scale(1.04) rotate(3deg);
+            }
+            50% {
+                transform: translate(-12px, 18px) scale(0.96) rotate(-3deg);
+            }
+            75% {
+                transform: translate(10px, -6px) scale(1.02) rotate(2deg);
+            }
+            100% {
+                transform: translate(-6px, 10px) scale(1) rotate(-1deg);
+            }
+        }
+
+        /* Responsive: la jerarquía de tamaños se conserva, solo se escala */
+        @media (max-width: 768px) {
+            :root {
+                --gif-pacman-size: 78px;
+                --gif-main-size: 42px;
+                --gif-accent-size: 34px;
+                --gif-small-size: 26px;
+            }
+            .floating-gifs .gif-pacman { opacity: 0.4; }
+            .floating-gifs .gif-main { opacity: 0.22; }
+            .floating-gifs .gif-accent { opacity: 0.2; }
+            .floating-gifs .gif-small { opacity: 0.12; }
+        }
+        @media (max-width: 480px) {
+            :root {
+                --gif-pacman-size: 58px;
+                --gif-main-size: 32px;
+                --gif-accent-size: 26px;
+                --gif-small-size: 20px;
+            }
+        }
+
+        /* Accesibilidad: respetar preferencia de movimiento reducido */
+        @media (prefers-reduced-motion: reduce) {
+            .floating-gifs .gif-float {
+                animation: none;
+            }
+        }
+
+        /* Accesibilidad: foco de teclado visible en enlaces y botones */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #13b2fb;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="DuctiTech" />
+                <span>
+                    <span class="ducti">DUCTI</span><span class="separator"> </span><span class="tech">TECH</span>
+                </span>
+            </a>
+            <nav aria-label="Navegación principal">
+                <ul>
+                    <li><a href="index.html" class="active" aria-current="page">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li><a href="services.html">Servicios</a></li>
+                    <li><a href="follow_up.html">Seguimiento</a></li>
+                    <li><a href="catalog.html">Catálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="neon-glow">Reparación de <span class="highlight">electrónicos</span> con garantía</h1>
+            <p>Especialistas en consolas, computadoras, celulares y más. Confía en profesionales para recuperar tus dispositivos.</p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="follow_up.html" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Seguimiento de servicio
+                </a>
+                <a href="catalog.html" class="btn btn-outline">
+                    <i class="fas fa-tags"></i> Ver catálogo
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== GIFS FLOTANTES ===== -->
+        <div class="floating-gifs" aria-hidden="true">
+            <!-- Fantasma azul (superior izquierda) -->
+            <img src="assets/animaciones/blueghost.gif" alt="" class="gif-float gif-main gif-1" />
+            <!-- Fantasma naranja (superior derecha) -->
+            <img src="assets/animaciones/orangeghost.gif" alt="" class="gif-float gif-main gif-2" />
+            <!-- PACMAN (inferior izquierda, el más grande) -->
+            <img src="assets/animaciones/pacman.gif" alt="" class="gif-float gif-pacman gif-3" />
+            <!-- Fantasma rosa (inferior derecha) -->
+            <img src="assets/animaciones/pinkghost.gif" alt="" class="gif-float gif-accent gif-4" />
+            <!-- Fantasma rojo (zona derecha media-baja) -->
+            <img src="assets/animaciones/redghost.gif" alt="" class="gif-float gif-small gif-5" />
+        </div>
+    </section>
+
+    <!-- ========== DISPOSITIVOS ========== -->
+    <section class="section" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="neon-glow">¿Qué reparamos?</h2>
+                <p>Equipos especializados con diagnóstico preciso y repuestos originales.</p>
+            </div>
+
+            <div class="grid-dispositivos" style="grid-template-columns: repeat(5, 1fr);">
+                <!-- Xbox -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/xbox.jpg" alt="Xbox" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Xbox</h3>
+                        <p>Reparación de fallas de encendido, lectores, discos duros y más.</p>
+                    </div>
+                </div>
+                <!-- PlayStation -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/playstation.jpg" alt="PlayStation" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>PlayStation</h3>
+                        <p>PS4, PS5: fallas de ventilación, HDMI, fuente de poder y software.</p>
+                    </div>
+                </div>
+                <!-- Nintendo Switch -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/nintendo-switch.jpg" alt="Nintendo Switch" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Nintendo Switch</h3>
+                        <p>Joy-Con drift, pantalla rota, batería, carga y problemas de conexión.</p>
+                    </div>
+                </div>
+                <!-- Nintendo DS -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/nintendo-ds.jpg" alt="Nintendo DS" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Nintendo DS</h3>
+                        <p>Pantallas rotas, botones, batería, cargadores y fallas de software.</p>
+                    </div>
+                </div>
+                <!-- Controles -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/controles.jpg" alt="Controles" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Controles</h3>
+                        <p>Reparación de drift, botones, gatillos, conexión inalámbrica y más.</p>
+                    </div>
+                </div>
+                <!-- Misceláneos -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/miscelaneos.jpg" alt="Misceláneos" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Misceláneos</h3>
+                        <p>Equipos de audio, proyectores, monitores, fuentes de poder y más.</p>
+                    </div>
+                </div>
+                <!-- Laptops -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/laptop.jpg" alt="Laptops" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Laptops</h3>
+                        <p>Pantalla rota, teclado, batería, fallas de encendido y rendimiento.</p>
+                    </div>
+                </div>
+                <!-- PC -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/pc.jpg" alt="Computadoras de escritorio" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>PC de escritorio</h3>
+                        <p>Reparación de fuente, placa base, RAM, discos duros y virus.</p>
+                    </div>
+                </div>
+                <!-- Celulares -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/celular.jpg" alt="Celulares" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Celulares</h3>
+                        <p>Cambio de pantalla, batería, puerto de carga, software y datos.</p>
+                    </div>
+                </div>
+                <!-- Tabletas -->
+                <div class="card-dispositivo">
+                    <div class="card-image">
+                        <img src="assets/dispositivos/tableta.jpg" alt="Tabletas" loading="lazy" />
+                    </div>
+                    <div class="card-body">
+                        <h3>Tabletas</h3>
+                        <p>iPad, Samsung y otras: pantalla rota, batería, carga y fallas de sistema.</p>
+                    </div>
+                </div>
+            </div><!-- /grid-dispositivos -->
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIOS (SLIDER) ========== -->
+    <section class="section testimonios-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: #fff;">Lo que dicen nuestros clientes</h2>
+                <p style="color: #aaa;">Opiniones reales de personas que confiaron en nosotros.</p>
+            </div>
+
+            <div class="testimonios-slider">
+                <div class="slides-wrapper" id="testimoniosSlider">
+                    <!-- Testimonio 1 -->
+                    <div class="slide testimonio-item">
+                        <div class="testimonio-comilla">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div>
+                                <h3>Osmar de Jesús Jiménez Rubio</h3>
+                                <div class="estrellas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonio-body">
+                            <p><strong>Excelente servicio</strong> – Te atienden rápidamente y, al momento de solicitar sus servicios, te explican y detallan los costos para que tomes la mejor decisión. Al entregarte tu producto reparado, te muestran su funcionamiento para que estés seguro de la reparación o mantenimiento. Ofrecen garantía en caso de cualquier falla posterior, sin costo adicional.</p>
+                            <p><strong>Amplia gama de productos</strong> – Cuentan con un gran catálogo de dispositivos que reparan, lo cual los convierte en una excelente opción.</p>
+                            <p><strong>Precios accesibles</strong> – Los costos son bastante buenos y justificados, con una excelente relación calidad-precio.</p>
+                        </div>
+                    </div>
+                    <!-- Testimonio 2 -->
+                    <div class="slide testimonio-item">
+                        <div class="testimonio-comilla">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div>
+                                <h3>Oswaldo Salgado</h3>
+                                <div class="estrellas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonio-body">
+                            <p>Excelente servicio. Llevé mi Nintendo Switch a reparación porque dejó de leer los cartuchos. Me dieron un diagnóstico correcto y oportuno, solucionaron el problema y los precios de la reparación son extremadamente accesibles. La consola quedó al 100 %. Sin duda, elegí la mejor opción para reparación. <strong>100 % recomendable y honestos</strong>, que es lo más importante hoy en día.</p>
+                        </div>
+                    </div>
+                    <!-- Testimonio 3 -->
+                    <div class="slide testimonio-item">
+                        <div class="testimonio-comilla">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div>
+                                <h3>Antonio C.</h3>
+                                <div class="estrellas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonio-body">
+                            <p>Excelente servicio. Llevé un PS5 por sobrecalentamiento y, con el mantenimiento que le hicieron, quedó excelente. Muy profesionales y con una atención de primera.</p>
+                        </div>
+                    </div>
+                    <!-- Testimonio 4 -->
+                    <div class="slide testimonio-item">
+                        <div class="testimonio-comilla">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <div class="testimonio-header">
+                            <div class="testimonio-avatar">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div>
+                                <h3>Jesús Azael Hernández Bautista</h3>
+                                <div class="estrellas">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonio-body">
+                            <p>Recomiendo ampliamente este lugar. Muy buena atención al cliente; resuelven todas tus dudas. Desde la recepción hasta la entrega de tus equipos, fueron muy amables. <strong>10/10</strong>, sin duda volvería a confiar en ellos.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Indicadores (puntos) -->
+                <div class="indicadores" id="indicadores"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION ========== -->
+    <section class="section" style="background: rgba(10, 25, 47, 0.85); backdrop-filter: blur(4px); border-top: 1px solid rgba(19,178,251,0.2);">
+        <div class="container" style="text-align:center;">
+            <h2 style="color: white; text-shadow: 0 0 20px rgba(19,178,251,0.3);">¿Ya tienes tu número de folio?</h2>
+            <p style="font-size:1.1rem; margin-bottom:20px; color: var(--gray-300);">Ingresa y conoce el estado actual de tu reparación.</p>
+            <a href="follow_up.html" class="btn btn-primary">
+                <i class="fas fa-arrow-right"></i> Ir a seguimiento
+            </a>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>DuctiTech</h4>
+                    <p>Jardín Colon No. 8, Col. Centro<br />Pachuca de Soto, Hgo.</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+527721646924">772 164 6924</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:contactodroidusty@gmail.com">contactodroidusty@gmail.com</a></p>
+                </div>
+                <div>
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about_us.html">Nosotros</a></li>
+                        <li><a href="services.html">Servicios</a></li>
+                        <li><a href="follow_up.html">Seguimiento</a></li>
+                        <li><a href="catalog.html">Catálogo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Síguenos</h4>
+                    <ul class="social-links">
+                        <li><a href="https://www.facebook.com/DuctiTech/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ducti_tech?stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@ducti.tech" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="https://maps.app.goo.gl/ZeSnL3kf8nuBJ69V6" target="_blank" rel="noopener noreferrer"><i class="fas fa-location-dot"></i> Google Maps</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy">
+                &copy; 2025 DuctiTech - Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS EXTERNOS ========== -->
+    <script src="js/slider.js"></script>
+</body>
+</html>

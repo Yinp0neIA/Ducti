@@ -1,0 +1,87 @@
+/* ============================================================
+   FONDO DE CIRCUITO ELECTRÓNICO NEÓN (Archivo independiente)
+   ============================================================ */
+
+/* Fondo base oscuro */
+body {
+    background: #0A192F;
+    position: relative;
+}
+
+/* CAPA DEL CIRCUITO (SVG inline) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'%3E%3Cdefs%3E%3Cfilter id='neonGlow'%3E%3CfeDropShadow dx='0' dy='0' stdDeviation='5' flood-color='%2313B2FB' flood-opacity='0.8'/%3E%3C/filter%3E%3Cfilter id='neonCobalt'%3E%3CfeDropShadow dx='0' dy='0' stdDeviation='4' flood-color='%23342BF9' flood-opacity='0.7'/%3E%3C/filter%3E%3C/defs%3E%3Cg stroke='%2313B2FB' stroke-width='1.8' fill='none' filter='url(%23neonGlow)' opacity='0.5'%3E%3C!-- Líneas horizontales --%3E%3Cpath d='M40 120 L160 120 L160 180 L280 180' /%3E%3Cpath d='M120 280 L240 280 L240 340 L380 340' /%3E%3Cpath d='M60 400 L180 400 L180 320' /%3E%3Cpath d='M320 80 L400 80 L400 160' /%3E%3Cpath d='M440 200 L360 200 L360 260 L280 260' /%3E%3Cpath d='M80 220 L160 220 L160 280' /%3E%3Cpath d='M400 280 L460 280 L460 360 L380 360' /%3E%3Cpath d='M20 460 L120 460 L120 400' /%3E%3Cpath d='M220 60 L280 60 L280 120' /%3E%3Cpath d='M440 440 L440 380 L380 380' /%3E%3C!-- Líneas verticales --%3E%3Cpath d='M180 40 L180 120' /%3E%3Cpath d='M340 40 L340 120 L400 120' /%3E%3Cpath d='M60 60 L60 140' /%3E%3Cpath d='M240 140 L240 200' /%3E%3Cpath d='M420 160 L420 220' /%3E%3Cpath d='M140 240 L140 340' /%3E%3Cpath d='M340 220 L340 280' /%3E%3Cpath d='M460 80 L460 160' /%3E%3Cpath d='M80 340 L80 420' /%3E%3Cpath d='M260 320 L260 420' /%3E%3C!-- Curvas y esquinas --%3E%3Cpath d='M160 120 Q160 140 180 140' /%3E%3Cpath d='M280 180 Q300 180 300 200' /%3E%3Cpath d='M400 160 Q420 160 420 180' /%3E%3Cpath d='M240 280 Q240 300 260 300' /%3E%3Cpath d='M120 280 Q120 300 140 300' /%3E%3Cpath d='M180 400 Q180 420 200 420' /%3E%3Cpath d='M380 360 Q400 360 400 340' /%3E%3C/g%3E%3C!-- Nodos y puntos (con otro color y filtro) --%3E%3Cg fill='%23342BF9' filter='url(%23neonCobalt)' opacity='0.7'%3E%3Ccircle cx='40' cy='120' r='5' /%3E%3Ccircle cx='160' cy='120' r='5' /%3E%3Ccircle cx='280' cy='180' r='5' /%3E%3Ccircle cx='120' cy='280' r='5' /%3E%3Ccircle cx='240' cy='280' r='5' /%3E%3Ccircle cx='380' cy='340' r='5' /%3E%3Ccircle cx='60' cy='400' r='5' /%3E%3Ccircle cx='180' cy='400' r='5' /%3E%3Ccircle cx='320' cy='80' r='5' /%3E%3Ccircle cx='400' cy='80' r='5' /%3E%3Ccircle cx='440' cy='200' r='5' /%3E%3Ccircle cx='360' cy='200' r='5' /%3E%3Ccircle cx='80' cy='220' r='5' /%3E%3Ccircle cx='160' cy='220' r='5' /%3E%3Ccircle cx='400' cy='280' r='5' /%3E%3Ccircle cx='460' cy='280' r='5' /%3E%3Ccircle cx='20' cy='460' r='5' /%3E%3Ccircle cx='120' cy='460' r='5' /%3E%3Ccircle cx='220' cy='60' r='5' /%3E%3Ccircle cx='280' cy='60' r='5' /%3E%3Ccircle cx='440' cy='440' r='5' /%3E%3Ccircle cx='380' cy='440' r='5' /%3E%3Ccircle cx='180' cy='40' r='5' /%3E%3Ccircle cx='340' cy='40' r='5' /%3E%3Ccircle cx='60' cy='60' r='5' /%3E%3Ccircle cx='240' cy='140' r='5' /%3E%3Ccircle cx='420' cy='160' r='5' /%3E%3Ccircle cx='140' cy='240' r='5' /%3E%3Ccircle cx='340' cy='220' r='5' /%3E%3Ccircle cx='460' cy='80' r='5' /%3E%3Ccircle cx='80' cy='340' r='5' /%3E%3Ccircle cx='260' cy='320' r='5' /%3E%3Ccircle cx='400' cy='180' r='5' /%3E%3Ccircle cx='300' cy='200' r='5' /%3E%3Ccircle cx='260' cy='300' r='5' /%3E%3Ccircle cx='140' cy='300' r='5' /%3E%3Ccircle cx='200' cy='420' r='5' /%3E%3Ccircle cx='400' cy='340' r='5' /%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 500px 500px;
+    opacity: 0.35;
+    transition: opacity 0.3s ease;
+}
+
+/* CAPA OSCURA PARA LEGIBILIDAD */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(10, 25, 47, 0.70);
+    backdrop-filter: blur(1px);
+}
+
+/* TODO EL CONTENIDO POR ENCIMA */
+body > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================================
+   EFECTOS NEÓN ADICIONALES (opcionales)
+   ============================================================ */
+
+/* Brillo para títulos */
+.neon-glow {
+    text-shadow:
+        0 0 10px #13B2FB,
+        0 0 20px #13B2FB,
+        0 0 40px #13B2FB,
+        0 0 80px #13B2FB;
+    color: #FFFFFF;
+}
+.neon-glow-cobalt {
+    text-shadow:
+        0 0 10px #342BF9,
+        0 0 20px #342BF9,
+        0 0 40px #342BF9;
+    color: #FFFFFF;
+}
+
+/* Resplandor en tarjetas al hover */
+.card-dispositivo,
+.card {
+    transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.card-dispositivo:hover,
+.card:hover {
+    box-shadow: 0 0 30px rgba(19, 178, 251, 0.25),
+                0 0 60px rgba(19, 178, 251, 0.10);
+}
+
+/* Animación de parpadeo sutil del circuito (opcional) */
+@keyframes circuitPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.55; }
+}
+body::before {
+    animation: circuitPulse 6s ease-in-out infinite;
+}

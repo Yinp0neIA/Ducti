@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DuctiTech</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/floating-animations.css" />
+    <link rel="stylesheet" href="css/neon-circuit.css" />
+    <link rel="stylesheet" href="css/catalog.css" />
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="DuctiTech" />
+                <span>
+                    <span class="ducti">DUCTI</span><span class="separator"> </span><span class="tech">TECH</span>
+                </span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about_us.html">Nosotros</a></li>
+                    <li><a href="services.html">Servicios</a></li>
+                    <li><a href="follow_up.html">Seguimiento</a></li>
+                    <li><a href="catalog.html" class="active">Catálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="neon-glow">Catálogo de <span class="highlight">equipos y mantenimientos</span></h1>
+            <p>Consulta los modelos que reparamos y las garantías y precios de nuestros servicios de mantenimiento.</p>
+            <div class="catalogo-quicknav">
+                <a href="#xbox" class="btn btn-outline"><i class="fa-brands fa-xbox"></i> Xbox</a>
+                <a href="#nintendo" class="btn btn-outline"><i class="fas fa-gamepad"></i> Nintendo</a>
+                <a href="#playstation" class="btn btn-outline"><i class="fa-brands fa-playstation"></i> PlayStation</a>
+                <a href="#laptops" class="btn btn-outline"><i class="fas fa-laptop"></i> Laptops</a>
+                <a href="#mantenimientos" class="btn btn-primary"><i class="fas fa-tags"></i> Precios de mantenimiento</a>
+            </div>
+        </div>
+
+        <!-- Decoraciones flotantes -->
+        <div class="floating-decor" aria-hidden="true">
+            <!-- El kart usa el drift 3D (swing de -40° a 40°, nunca de
+                 espaldas) + líneas de velocidad detrás, en su propio slot. -->
+            <div class="decor-slot decor-tl decor-slot--kart">
+                <img src="assets/animaciones/kart.png" alt="" class="decor-item decor-lg anim-kart" />
+            </div>
+            <div class="decor-slot decor-tr">
+                <img src="assets/animaciones/gamecube.png" alt="" class="decor-item decor-md anim-slow" />
+            </div>
+            <div class="decor-slot decor-bl">
+                <img src="assets/animaciones/ps.png" alt="" class="decor-item decor-sm anim-bob" />
+            </div>
+            <div class="decor-slot decor-br">
+                <img src="assets/animaciones/xbox.png" alt="" class="decor-item decor-sm anim-pulse" />
+            </div>
+            <div class="decor-slot decor-ml">
+                <img src="assets/animaciones/switch.png" alt="" class="decor-item decor-md anim-wobble" />
+            </div>
+            <div class="decor-slot decor-mr">
+                <img src="assets/animaciones/nintendo.png" alt="" class="decor-item decor-md anim-slow delay-2" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== XBOX ========== -->
+    <section class="section" id="xbox">
+        <div class="container">
+            <div class="section-title">
+                <span class="marca-label"><i class="fa-brands fa-xbox"></i> Microsoft</span>
+                <h2 class="neon-glow">Xbox</h2>
+                <p>Diagnóstico y reparación para toda la línea Xbox, desde la clásica hasta la más reciente.</p>
+            </div>
+
+            <div class="catalogo-grid">
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/xbox-clasico-360-one.jpg" alt="Xbox Clásico, Xbox 360 y Xbox One" loading="lazy" tabindex="0" />
+                    <figcaption>Xbox Clásico · Xbox 360 · Xbox One</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/xbox-series-x.jpg" alt="Xbox Series X" loading="lazy" tabindex="0" />
+                    <figcaption>Xbox Series X</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/xbox-series-s.jpg" alt="Xbox Series S" loading="lazy" tabindex="0" />
+                    <figcaption>Xbox Series S</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NINTENDO ========== -->
+    <section class="section" id="nintendo">
+        <div class="container">
+            <div class="section-title">
+                <span class="marca-label"><i class="fas fa-gamepad"></i> Nintendo</span>
+                <h2 class="neon-glow">Nintendo</h2>
+                <p>De las consolas clásicas de colección hasta la Switch 2 más reciente.</p>
+            </div>
+
+            <div class="catalogo-grid">
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/nintendo-snes-n64-gcn.jpg" alt="SNES, Nintendo 64 y GameCube" loading="lazy" tabindex="0" />
+                    <figcaption>SNES · N64 · GameCube</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/nintendo-wii-wiiu-switch.jpg" alt="Wii, Wii U y Switch" loading="lazy" tabindex="0" />
+                    <figcaption>Wii · Wii U · Switch</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/nintendo-switch-lite-oled-2.jpg" alt="Switch Lite, Switch OLED y Switch 2" loading="lazy" tabindex="0" />
+                    <figcaption>Switch Lite · Switch OLED · Switch 2</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PLAYSTATION (2+2+1 con última destacada) ========== -->
+    <section class="section" id="playstation">
+        <div class="container">
+            <div class="section-title">
+                <span class="marca-label"><i class="fa-brands fa-playstation"></i> Sony</span>
+                <h2 class="neon-glow">PlayStation</h2>
+                <p>Reparación y mantenimiento para toda la familia PlayStation.</p>
+            </div>
+
+            <div class="catalogo-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Fila 1 -->
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/playstation-ps1-ps2-ps3.jpg" alt="PS1, PS2 y PS3" loading="lazy" tabindex="0" />
+                    <figcaption>PS1 · PS2 · PS3</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/playstation-ps3-fat-slim.jpg" alt="PS3 Fat y PS3 Slim" loading="lazy" tabindex="0" />
+                    <figcaption>PS3 Fat · PS3 Slim</figcaption>
+                </figure>
+
+                <!-- Fila 2 -->
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/playstation-ps4-fat-slim.jpg" alt="PS4 Fat y PS4 Slim" loading="lazy" tabindex="0" />
+                    <figcaption>PS4 Fat · PS4 Slim</figcaption>
+                </figure>
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/playstation-ps4pro-ps5fat.jpg" alt="PS4 Pro y PS5 Fat" loading="lazy" tabindex="0" />
+                    <figcaption>PS4 Pro · PS5 Fat</figcaption>
+                </figure>
+
+                <!-- Fila 3: ocupa ambas columnas y es más grande -->
+                <figure class="catalogo-card catalogo-card--destacada" style="grid-column: 1 / -1;">
+                    <img src="assets/catalogo/playstation-ps5-pro.jpg" alt="PS5 Pro" loading="lazy" tabindex="0" />
+                    <figcaption>PS5 Pro</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LAPTOPS ========== -->
+    <section class="section" id="laptops">
+        <div class="container">
+            <div class="section-title">
+                <span class="marca-label"><i class="fas fa-laptop"></i> Cómputo</span>
+                <h2 class="neon-glow">Laptops</h2>
+                <p>Reparamos equipos básicos, de oficina y gamer, sin importar la marca.</p>
+            </div>
+
+            <div class="catalogo-grid catalogo-grid--single">
+                <figure class="catalogo-card">
+                    <img src="assets/catalogo/laptops.jpg" alt="Laptops básicas, de gama media, gamer básica y gamer alta" loading="lazy" tabindex="0" />
+                    <figcaption>Básicas · Gama media · Gama alta</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MANTENIMIENTOS (tablas de precios) ========== -->
+    <section class="section" id="mantenimientos">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="neon-glow">Precios de mantenimiento</h2>
+                <p>Servicio preventivo con garantía. Se desarma y limpia cada consola componente por componente.</p>
+            </div>
+
+            <!-- Tabla Xbox -->
+            <div class="tabla-wrap">
+                <h3><i class="fa-brands fa-xbox"></i> Xbox</h3>
+                <div class="tabla-scroll">
+                    <table class="tabla-precios">
+                        <thead>
+                            <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Xbox Clásico</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>Xbox 360</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>Xbox One</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>Xbox Series X</td><td>3 meses</td><td>$800</td></tr>
+                            <tr><td>Xbox Series S</td><td>3 meses</td><td>$500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla Nintendo -->
+            <div class="tabla-wrap">
+                <h3><i class="fas fa-gamepad"></i> Nintendo</h3>
+                <div class="tabla-scroll">
+                    <table class="tabla-precios">
+                        <thead>
+                            <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>SNES</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>N64</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>GameCube</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>Wii U</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>Switch Lite / OLED / 2</td><td>3 meses</td><td>$500</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabla PlayStation -->
+            <div class="tabla-wrap">
+                <h3><i class="fa-brands fa-playstation"></i> PlayStation</h3>
+                <div class="tabla-scroll">
+                    <table class="tabla-precios">
+                        <thead>
+                            <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>PS1</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>PS2</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>PS3</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>PS4</td><td>3 meses</td><td>$500</td></tr>
+                            <tr><td>PS5</td><td>3 meses</td><td>$800</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BARRAS HORIZONTALES FULL-WIDTH (consolas destacadas) ===== -->
+    <section class="section barras-destacadas" style="padding: 40px 0 60px; overflow: hidden;">
+        <div class="container" style="text-align: center; margin-bottom: 30px;">
+            <h2 class="neon-glow" style="color: #fff; font-size: 2rem;">Consolas con mantenimiento especializado</h2>
+            <p style="color: #aaa;">Limpieza profunda, cambio de pasta térmica y diagnóstico completo.</p>
+        </div>
+
+        <div class="mantenimiento-barras">
+            <!-- 1. GameCube (imagen izquierda) -->
+            <div class="barra-mantenimiento">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/gamecube.png" alt="GameCube" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>Nintendo GameCube</h4>
+                    <p>Mantenimiento preventivo completo, limpieza interna, cambio de pasta térmica y revisión de lector óptico.</p>
+                    <span class="precio-badge">$500</span>
+                </div>
+            </div>
+
+            <!-- 2. Nintendo Switch (imagen derecha) -->
+            <div class="barra-mantenimiento reverse">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/nintendo-switch.png" alt="Nintendo Switch" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>Nintendo Switch</h4>
+                    <p>Limpieza profunda, revisión de ventilación, cambio de pasta térmica y diagnóstico de batería.</p>
+                    <span class="precio-badge">$500</span>
+                </div>
+            </div>
+
+            <!-- 3. PS1 (imagen izquierda) -->
+            <div class="barra-mantenimiento">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/ps1.png" alt="PlayStation 1" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>PlayStation 1</h4>
+                    <p>Mantenimiento de lector óptico, limpieza de placa y revisión de fuente de poder.</p>
+                    <span class="precio-badge">$500</span>
+                </div>
+            </div>
+
+            <!-- 4. PS5 Slim (imagen derecha) -->
+            <div class="barra-mantenimiento reverse">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/ps5-slim.png" alt="PS5 Slim" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>PlayStation 5 Slim</h4>
+                    <p>Limpieza de disipador, cambio de metal líquido, revisión de ventiladores y puertos.</p>
+                    <span class="precio-badge">$800</span>
+                </div>
+            </div>
+
+            <!-- 5. Xbox One (imagen izquierda) -->
+            <div class="barra-mantenimiento">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/xbox-one.png" alt="Xbox One" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>Xbox One</h4>
+                    <p>Mantenimiento completo, limpieza de componentes, cambio de pasta térmica y revisión de HDD.</p>
+                    <span class="precio-badge">$500</span>
+                </div>
+            </div>
+
+            <!-- 6. Xbox Series X (imagen derecha) -->
+            <div class="barra-mantenimiento reverse">
+                <div class="barra-imagen">
+                    <img src="assets/catalogo/xbox-series-x.png" alt="Xbox Series X" loading="lazy" />
+                </div>
+                <div class="barra-info">
+                    <h4>Xbox Series X</h4>
+                    <p>Limpieza de disipador, cambio de pasta térmica, revisión de fuente de poder y ventilación.</p>
+                    <span class="precio-badge">$800</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CALL TO ACTION ========== -->
+    <section class="section" style="background: rgba(10, 25, 47, 0.85); backdrop-filter: blur(4px); border-top: 1px solid rgba(19,178,251,0.2);">
+        <div class="container" style="text-align:center;">
+            <h2 style="color: white; text-shadow: 0 0 20px rgba(19,178,251,0.3);">¿No encuentras tu equipo en la lista?</h2>
+            <p style="font-size:1.1rem; margin-bottom:20px; color: var(--gray-300);">Contáctanos, seguramente también podemos ayudarte a repararlo.</p>
+            <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+                <a href="follow_up.html" class="btn btn-primary">
+                    <i class="fas fa-search"></i> Seguimiento de servicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>DuctiTech</h4>
+                    <p>Jardín Colon No. 8, Col. Centro<br />Pachuca de Soto, Hgo.</p>
+                    <p><i class="fas fa-phone"></i> 772 164 6924</p>
+                    <p><i class="fas fa-envelope"></i> contactodroidusty@gmail.com</p>
+                </div>
+                <div>
+                    <h4>Enlaces</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="about_us.html">Nosotros</a></li>
+                        <li><a href="services.html">Servicios</a></li>
+                        <li><a href="follow_up.html">Seguimiento</a></li>
+                        <li><a href="catalog.html">Catálogo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Síguenos</h4>
+                    <ul class="social-links">
+                        <li><a href="https://www.facebook.com/DuctiTech/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ducti_tech?stkn=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@ducti.tech" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="https://maps.app.goo.gl/ZeSnL3kf8nuBJ69V6" target="_blank"><i class="fas fa-location-dot"></i> Google Maps</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copy">
+                &copy; 2025 DuctiTech - Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPT EXTERNO ========== -->
+    <script src="js/lightbox.js"></script>
+</body>
+</html>

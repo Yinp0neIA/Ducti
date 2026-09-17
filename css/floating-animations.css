@@ -1,0 +1,320 @@
+/* ================================================================
+   DECORACIONES FLOTANTES - IMÁGENES PNG ANIMADAS
+   v3: sistema de posicionamiento por "slots" + animaciones temáticas
+       (item de Minecraft para la espada, drift 3D + líneas de
+       velocidad para el kart, brillo de calor para el cautín)
+   ================================================================ */
+
+/* Contenedor (ocupa todo el hero) */
+.floating-decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* ----------------------------------------------------------------
+   SISTEMA DE SLOTS
+   Cada imagen va envuelta en un .decor-slot que se encarga SOLO de
+   la posición (top/left/right/bottom). La animación (rotar, flotar,
+   escalar...) vive en la imagen de adentro. Así nunca se pisan:
+   antes, poner la posición con "transform: translate(-50%,-50%)" en
+   el mismo elemento que animaba con "transform" hacía que la
+   animación borrara la posición en cada frame. Separando ambas
+   cosas en dos elementos, se puede animar libremente sin que el
+   ítem "salte" de su lugar.
+   ---------------------------------------------------------------- */
+.decor-slot {
+    position: absolute;
+    pointer-events: none;
+    line-height: 0;
+}
+
+.decor-tl { top: 10%;  left: 4%;  }
+.decor-tr { top: 10%;  right: 4%; }
+.decor-bl { bottom: 10%; left: 5%;  }
+.decor-br { bottom: 10%; right: 5%; }
+.decor-ml { top: 45%;  left: 2%;  }
+.decor-mr { top: 45%;  right: 2%; }
+
+/* Elemento base (la imagen) */
+.floating-decor .decor-item {
+    display: block;
+    height: auto;
+    will-change: transform, filter;
+    filter: drop-shadow(0 0 14px rgba(19, 178, 251, 0.28));
+    transform-origin: center center;
+    backface-visibility: visible;
+}
+
+/* ---- Tamaños ---- */
+.decor-xs { width: 30px;  opacity: 0.18; }
+.decor-sm { width: 46px;  opacity: 0.28; }
+.decor-md { width: 68px;  opacity: 0.38; }
+.decor-lg { width: 96px;  opacity: 0.50; }
+.decor-xl { width: 130px; opacity: 0.60; }
+
+/* ================================================================
+   ANIMACIONES GENERALES
+   ================================================================ */
+
+/* Flotación suave con ligera rotación (uso general) */
+@keyframes animFloat {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33%      { transform: translate(6px, -14px) rotate(3deg); }
+    66%      { transform: translate(-8px, -6px) rotate(-2deg); }
+}
+
+/* Flotación lenta muy sutil */
+@keyframes animSlow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50%      { transform: translate(-10px, 10px) rotate(-4deg); }
+}
+
+/* Balanceo lateral (herramientas) */
+@keyframes animWobble {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50%      { transform: rotate(8deg)  translateY(-8px); }
+}
+
+/* Latido suave (personajes) */
+@keyframes animPulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.14); }
+}
+
+/* Bob vertical (sube y baja) */
+@keyframes animBob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-18px) rotate(3deg); }
+}
+
+/* Deriva en círculo pequeño */
+@keyframes animDrift {
+    0%   { transform: translate(0, 0) rotate(0deg); }
+    25%  { transform: translate(12px, -8px) rotate(4deg); }
+    50%  { transform: translate(0, -14px) rotate(0deg); }
+    75%  { transform: translate(-12px, -8px) rotate(-4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ----------------------------------------------------------------
+   KART: swing 3D en perspectiva de -40° a +40° (nunca desaparece de
+   lado, a diferencia de una vuelta completa de 360°), con un
+   "derrape" extra (skew), rebote de suspensión y un brillo que se
+   enciende cuando queda de frente, como si acelerara hacia cámara.
+   ---------------------------------------------------------------- */
+@keyframes animKart3d {
+    0% {
+        transform: perspective(1000px)
+                   translateY(0) translateX(0)
+                   rotateY(-40deg) rotateZ(-6deg) skewX(2deg)
+                   scale(1);
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35))
+                drop-shadow(0 0 18px rgba(19, 178, 251, 0.35));
+    }
+    25% {
+        transform: perspective(1000px)
+                   translateY(-14px) translateX(4px)
+                   rotateY(-10deg) rotateZ(-2deg) skewX(0deg)
+                   scale(1.06);
+        filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 30px rgba(19, 178, 251, 0.5));
+    }
+    50% {
+        transform: perspective(1000px)
+                   translateY(-22px) translateX(0)
+                   rotateY(40deg) rotateZ(6deg) skewX(-2deg)
+                   scale(1.12);
+        filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.25))
+                drop-shadow(0 0 46px rgba(19, 178, 251, 0.7));
+    }
+    75% {
+        transform: perspective(1000px)
+                   translateY(-12px) translateX(-4px)
+                   rotateY(10deg) rotateZ(2deg) skewX(0deg)
+                   scale(1.05);
+        filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 30px rgba(19, 178, 251, 0.5));
+    }
+    100% {
+        transform: perspective(1000px)
+                   translateY(0) translateX(0)
+                   rotateY(-40deg) rotateZ(-6deg) skewX(2deg)
+                   scale(1);
+        filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.35))
+                drop-shadow(0 0 18px rgba(19, 178, 251, 0.35));
+    }
+}
+
+/* Líneas de velocidad detrás del kart (van en el .decor-slot, no en
+   la imagen, para que no se estiren con el rotateY del kart) */
+@keyframes kartSpeedLines {
+    0%, 38%, 62%, 100% { opacity: 0; transform: translate(-50%, -50%) translateX(0); }
+    48% { opacity: 0.85; transform: translate(-50%, -50%) translateX(-46px); }
+    52% { opacity: 0.85; transform: translate(-50%, -50%) translateX(46px); }
+}
+
+.decor-slot--kart {
+    overflow: visible;
+}
+.decor-slot--kart::before,
+.decor-slot--kart::after {
+    content: "";
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    width: 50px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, transparent, rgba(19, 178, 251, 0.9), transparent);
+    opacity: 0;
+    animation: kartSpeedLines 8s ease-in-out infinite;
+}
+.decor-slot--kart::after {
+    top: 64%;
+    width: 34px;
+    animation-delay: -0.25s;
+}
+
+/* ----------------------------------------------------------------
+   ITEM DE MINECRAFT: los objetos tirados en Minecraft giran sobre
+   su propio eje a velocidad constante y "rebotan" levemente. Como
+   es un PNG plano, la rotación se simula con scaleX (igual que un
+   sprite 2D "flip"): al pasar por scaleX≈0 el objeto queda de canto
+   -tal como se ve un ítem 3D girando de perfil- y ahí mismo se le
+   agrega un destello blanco, como si atrapara la luz.
+   ---------------------------------------------------------------- */
+@keyframes animMinecraftItem {
+    0%    { transform: translateY(0)    scaleX(1)     rotate(0deg);  filter: drop-shadow(0 0 12px rgba(19, 178, 251, 0.35)); }
+    12.5% { transform: translateY(-3px) scaleX(0.71)  rotate(1deg);  filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.4)); }
+    25%   { transform: translateY(-6px) scaleX(0.04)  rotate(0deg);  filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.8)); }
+    37.5% { transform: translateY(-3px) scaleX(-0.71) rotate(-1deg); filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.4)); }
+    50%   { transform: translateY(0)    scaleX(-1)    rotate(0deg);  filter: drop-shadow(0 0 12px rgba(19, 178, 251, 0.35)); }
+    62.5% { transform: translateY(-3px) scaleX(-0.71) rotate(1deg);  filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.4)); }
+    75%   { transform: translateY(-6px) scaleX(-0.04) rotate(0deg);  filter: drop-shadow(0 0 26px rgba(255, 255, 255, 0.8)); }
+    87.5% { transform: translateY(-3px) scaleX(0.71)  rotate(-1deg); filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.4)); }
+    100%  { transform: translateY(0)    scaleX(1)     rotate(0deg);  filter: drop-shadow(0 0 12px rgba(19, 178, 251, 0.35)); }
+}
+
+/* Halo tenue en el "piso" bajo el ítem, como el brillo que sueltan
+   los objetos tirados en el juego. Va en el .decor-slot. */
+@keyframes itemGlowPulse {
+    0%, 100% { opacity: 0.45; transform: translateX(-50%) scale(1); }
+    50%      { opacity: 0.9;  transform: translateX(-50%) scale(1.2); }
+}
+.decor-slot--item-glow {
+    overflow: visible;
+}
+.decor-slot--item-glow::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -4px;
+    width: 55%;
+    height: 8px;
+    background: radial-gradient(ellipse at center, rgba(19, 178, 251, 0.4) 0%, transparent 72%);
+    filter: blur(1px);
+    animation: itemGlowPulse 3.2s ease-in-out infinite;
+}
+
+/* ----------------------------------------------------------------
+   HERRAMIENTA CALIENTE (cautín): balanceo normal + un brillo cálido
+   que se enciende en la punta al llegar arriba, simulando el calor.
+   ---------------------------------------------------------------- */
+@keyframes animSolder {
+    0%, 100% {
+        transform: rotate(-8deg) translateY(0);
+        filter: drop-shadow(0 0 10px rgba(19, 178, 251, 0.3));
+    }
+    50% {
+        transform: rotate(8deg) translateY(-9px);
+        filter: drop-shadow(0 0 12px rgba(19, 178, 251, 0.35))
+                drop-shadow(2px 2px 10px rgba(255, 140, 40, 0.55));
+    }
+}
+
+/* ---- Clases de animación ---- */
+.anim-float  { animation: animFloat  10s ease-in-out infinite; }
+.anim-slow   { animation: animSlow   16s ease-in-out infinite; }
+.anim-wobble { animation: animWobble  6s ease-in-out infinite; }
+.anim-pulse  { animation: animPulse   4s ease-in-out infinite; }
+.anim-bob    { animation: animBob     8s ease-in-out infinite; }
+.anim-drift  { animation: animDrift  18s ease-in-out infinite; }
+.anim-solder { animation: animSolder  5s ease-in-out infinite; }
+
+.anim-kart {
+    animation: animKart3d 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.anim-minecraft-item {
+    animation: animMinecraftItem 3.2s linear infinite;
+    transform-style: preserve-3d;
+}
+
+/* ---- Retrasos escalonados (para desincronizar) ---- */
+.delay-1 { animation-delay: -1.5s; }
+.delay-2 { animation-delay: -3s; }
+.delay-3 { animation-delay: -4.5s; }
+.delay-4 { animation-delay: -6s; }
+.delay-5 { animation-delay: -7.5s; }
+
+/* ---- Asegurar que el contenido quede por encima ---- */
+.about-hero,
+.services-hero,
+.seguimiento-hero,
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+.about-hero .container,
+.services-hero .container,
+.seguimiento-hero .container,
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .decor-xs { width: 20px; opacity: 0.12; }
+    .decor-sm { width: 30px; opacity: 0.18; }
+    .decor-md { width: 44px; opacity: 0.25; }
+    .decor-lg { width: 60px; opacity: 0.32; }
+    .decor-xl { width: 82px; opacity: 0.40; }
+
+    .decor-tl { top: 6%;  left: 3%;  }
+    .decor-tr { top: 6%;  right: 3%; }
+    .decor-bl { bottom: 6%; left: 3%;  }
+    .decor-br { bottom: 6%; right: 3%; }
+}
+@media (max-width: 480px) {
+    .decor-xs { width: 16px; opacity: 0.10; }
+    .decor-sm { width: 24px; opacity: 0.15; }
+    .decor-md { width: 34px; opacity: 0.20; }
+    .decor-lg { width: 46px; opacity: 0.26; }
+    .decor-xl { width: 62px; opacity: 0.32; }
+
+    /* En pantallas muy chicas, los slots de en medio (izq/der)
+       quedan muy cerca del texto centrado: se ocultan para que el
+       hero respire. Los de las esquinas se quedan. */
+    .decor-ml,
+    .decor-mr {
+        display: none;
+    }
+}
+
+/* ---- Accesibilidad: movimiento reducido ---- */
+@media (prefers-reduced-motion: reduce) {
+    .floating-decor .decor-item {
+        animation: none !important;
+    }
+    .decor-slot--kart::before,
+    .decor-slot--kart::after,
+    .decor-slot--item-glow::after {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+}

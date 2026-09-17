@@ -1,0 +1,681 @@
+/* ==========================================================================
+   catalogo.css
+   Estilos exclusivos de catalog.html con estilo neón mejorado.
+   Complementa (no reemplaza) a style.css y neon-circuit.css.
+   ========================================================================== */
+
+/* ---- Navegación rápida del hero ---- */
+.catalogo-quicknav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.catalogo-quicknav .btn {
+  transition: all 0.3s ease;
+}
+
+.catalogo-quicknav .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(19, 178, 251, 0.3);
+}
+
+/* ---- Encabezado de marca (Microsoft / Nintendo / Sony) ----
+   Ahora es una "píldora" claramente separada del título: fondo,
+   borde y padding propios, para que se lea como una etiqueta y
+   no como el inicio de la misma frase que el modelo (h2). */
+.marca-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cyan-tech, #13b2fb);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(19, 178, 251, 0.08);
+  border: 1px solid rgba(19, 178, 251, 0.3);
+  margin-bottom: 16px;
+}
+
+.marca-label i {
+  font-size: 0.85rem;
+}
+
+/* ---- TÍTULOS DE SECCIÓN CON ESTILO NEÓN (CORREGIDO) ----
+   Se agranda un poco y se separa más de la píldora de marca y
+   del párrafo de abajo, para que quede claro que es el elemento
+   dominante (el modelo), no una continuación de la marca. */
+.section-title h2 {
+  font-size: 2.6rem;
+  margin: 0 0 14px;
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  line-height: 1.15;
+  /* text-shadow eliminado: ahora usa solo el de .neon-glow */
+  transition: text-shadow 0.3s ease;
+}
+
+.section-title h2:hover {
+  text-shadow:
+    0 0 15px rgba(19, 178, 251, 0.8),
+    0 0 30px rgba(19, 178, 251, 0.5),
+    0 0 60px rgba(19, 178, 251, 0.3);
+}
+
+.section-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--cyan-tech);
+  border-radius: 4px;
+  box-shadow: 0 0 20px rgba(19, 178, 251, 0.6);
+}
+
+/* Párrafo descriptivo debajo del título: separado y con ancho
+   limitado para que no compita en anchura con marca + título. */
+.section-title p {
+  max-width: 560px;
+  margin: 18px auto 0;
+  color: #aaa;
+}
+
+/* ---- Rejilla de dispositivos ---- */
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.catalogo-grid.catalogo-grid--single {
+  grid-template-columns: minmax(240px, 420px);
+  justify-content: center;
+}
+
+/* ---- TARJETAS CON ESTILO NEÓN ---- */
+.catalogo-card {
+  margin: 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(19, 178, 251, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  backdrop-filter: blur(4px);
+}
+
+.catalogo-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(19, 178, 251, 0.7);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(19, 178, 251, 0.15),
+    0 0 60px rgba(19, 178, 251, 0.05);
+}
+
+/* ---- IMAGEN: TAMAÑO FIJO Y UNIFORME ---- */
+.catalogo-card img,
+.callout-card img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  cursor: zoom-in;
+  background-color: rgba(10, 25, 47, 0.5);
+  transition: transform 0.4s ease;
+}
+
+.catalogo-card:hover img {
+  transform: scale(1.03);
+}
+
+.catalogo-card img:focus-visible,
+.callout-card img:focus-visible {
+  outline: 2px solid rgba(19, 178, 251, 0.9);
+  outline-offset: -2px;
+}
+
+/* ---- PIE DE FOTO ---- */
+.catalogo-card figcaption {
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray-300, #9fb0c9);
+  border-top: 1px solid rgba(19, 178, 251, 0.12);
+  flex-shrink: 0;
+  background: rgba(10, 25, 47, 0.3);
+}
+
+/* ---- TABLAS DE PRECIOS CON ESTILO NEÓN ---- */
+.tabla-wrap {
+  margin-bottom: 44px;
+}
+
+.tabla-wrap h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 14px;
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.2);
+}
+
+.tabla-wrap h3 i {
+  color: rgba(19, 178, 251, 0.9);
+  filter: drop-shadow(0 0 10px rgba(19, 178, 251, 0.3));
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+  border-radius: 10px;
+}
+
+.tabla-precios {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  background: rgba(10, 25, 47, 0.55);
+  border: 1px solid rgba(19, 178, 251, 0.25);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+}
+
+.tabla-precios th {
+  background: rgba(19, 178, 251, 0.15);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 2px solid rgba(19, 178, 251, 0.3);
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.2);
+}
+
+.tabla-precios td {
+  padding: 12px 16px;
+  color: var(--gray-300, #c3cbdb);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.95rem;
+  transition: background 0.3s ease;
+}
+
+.tabla-precios tr:last-child td {
+  border-bottom: none;
+}
+
+.tabla-precios tbody tr {
+  transition: background 0.3s ease;
+}
+
+.tabla-precios tbody tr:hover td {
+  background: rgba(19, 178, 251, 0.08);
+}
+
+.tabla-precios tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tabla-precios td:last-child {
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.2);
+}
+
+/* ---- CALL OUTS (tarjetas de mantenimiento) con estilo neón ---- */
+.catalogo-callouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.callout-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(19, 178, 251, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  backdrop-filter: blur(4px);
+}
+
+.callout-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(19, 178, 251, 0.7);
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(19, 178, 251, 0.15),
+    0 0 60px rgba(19, 178, 251, 0.05);
+}
+
+.callout-card:hover img {
+  transform: scale(1.03);
+}
+
+/* ---- Las imágenes de callout también con altura fija ---- */
+.callout-card img {
+  height: 200px;
+  transition: transform 0.4s ease;
+}
+
+.callout-card h4 {
+  color: #fff;
+  margin: 16px 16px 6px;
+  font-size: 1.05rem;
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.15);
+}
+
+.callout-card p {
+  margin: 0 16px 18px;
+  color: var(--gray-300, #9fb0c9);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  flex-grow: 1;
+}
+
+/* ---- Lightbox mejorado ---- */
+.dt-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 9, 18, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px;
+  z-index: 999;
+  backdrop-filter: blur(8px);
+}
+
+.dt-lightbox.active {
+  display: flex;
+}
+
+.dt-lightbox img {
+  max-width: min(92vw, 640px);
+  max-height: 80vh;
+  border-radius: 12px;
+  border: 2px solid rgba(19, 178, 251, 0.4);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(19, 178, 251, 0.1);
+  object-fit: contain;
+  animation: lightboxFade 0.3s ease;
+}
+
+@keyframes lightboxFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dt-lightbox-caption {
+  color: #fff;
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  max-width: 640px;
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.2);
+}
+
+.dt-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.2rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 12px;
+  transition: transform 0.3s ease, color 0.3s ease;
+  z-index: 10;
+}
+
+.dt-lightbox-close:hover {
+  transform: rotate(90deg);
+  color: var(--cyan-tech);
+}
+
+.dt-lightbox-close:focus-visible {
+  outline: 2px solid rgba(19, 178, 251, 0.9);
+}
+
+/* ---- Accesibilidad: respeta "reducir movimiento" ---- */
+@media (prefers-reduced-motion: reduce) {
+  .catalogo-card,
+  .callout-card,
+  .catalogo-card img,
+  .callout-card img,
+  .dt-lightbox-close,
+  .dt-lightbox img {
+    transition: none !important;
+    animation: none !important;
+  }
+  .catalogo-card:hover,
+  .callout-card:hover,
+  .catalogo-card:hover img,
+  .callout-card:hover img {
+    transform: none !important;
+  }
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 768px) {
+  .section-title h2 {
+    font-size: 1.9rem;
+  }
+  .marca-label {
+    font-size: 0.7rem;
+    padding: 5px 13px;
+  }
+  .catalogo-grid,
+  .catalogo-callouts {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .catalogo-card img,
+  .callout-card img {
+    height: 180px;
+  }
+  .callout-card img {
+    height: 160px;
+  }
+  .tabla-precios {
+    min-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .catalogo-grid,
+  .catalogo-callouts {
+    grid-template-columns: 1fr;
+  }
+  .catalogo-card img,
+  .callout-card img {
+    height: 200px;
+  }
+  .callout-card img {
+    height: 180px;
+  }
+  .section-title h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ================================================================
+   BARRAS HORIZONTALES DE MANTENIMIENTO (FULL-WIDTH + ANIMACIÓN)
+   ================================================================ */
+
+/* Contenedor de barras: ocupa todo el ancho */
+.mantenimiento-barras {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+/* Cada barra ocupa todo el ancho de la pantalla */
+.barra-mantenimiento {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(19, 178, 251, 0.2);
+  border-bottom: 1px solid rgba(19, 178, 251, 0.2);
+  backdrop-filter: blur(4px);
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+/* Efecto de resplandor neón en los bordes (solo en los extremos) */
+.barra-mantenimiento::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--cyan-tech), transparent);
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+
+.barra-mantenimiento::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--cyan-tech), transparent);
+  opacity: 0.3;
+  transition: opacity 0.4s ease;
+}
+
+.barra-mantenimiento:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(19, 178, 251, 0.5);
+}
+
+.barra-mantenimiento:hover::before,
+.barra-mantenimiento:hover::after {
+  opacity: 0.8;
+}
+
+/* Contenedor de la imagen: ocupa 40% del ancho, sin desbordar */
+.barra-mantenimiento .barra-imagen {
+  flex: 0 0 40%;
+  overflow: visible; /* Para que la imagen pueda sobresalir */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 10px 0;
+}
+
+/* La imagen sobresale del contenedor y tiene animación */
+.barra-mantenimiento .barra-imagen img {
+  width: 90%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(19, 178, 251, 0.2));
+  animation: floatImage 4s ease-in-out infinite;
+  transition: filter 0.4s ease;
+}
+
+/* Animación de flotación y brillo neón */
+@keyframes floatImage {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.2));
+  }
+  50% {
+    transform: translateY(-10px) scale(1.02);
+    filter: drop-shadow(0 0 40px rgba(19, 178, 251, 0.5));
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.2));
+  }
+}
+
+/* Variante para la imagen en la derecha (se invierte el orden de la animación) */
+.barra-mantenimiento.reverse .barra-imagen img {
+  animation: floatImageReverse 4s ease-in-out infinite;
+}
+
+@keyframes floatImageReverse {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.2));
+  }
+  50% {
+    transform: translateY(10px) scale(1.02);
+    filter: drop-shadow(0 0 40px rgba(19, 178, 251, 0.5));
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: drop-shadow(0 0 15px rgba(19, 178, 251, 0.2));
+  }
+}
+
+/* Efecto de brillo neón alrededor de la imagen (solo en hover) */
+.barra-mantenimiento:hover .barra-imagen img {
+  filter: drop-shadow(0 0 40px rgba(19, 178, 251, 0.8)) drop-shadow(0 0 80px rgba(19, 178, 251, 0.3));
+  animation-play-state: running;
+}
+
+/* Información a la derecha (o izquierda si es reverse) */
+.barra-mantenimiento .barra-info {
+  flex: 1;
+  padding: 30px 40px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #e0e0e0;
+}
+
+.barra-mantenimiento .barra-info h4 {
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  margin: 0 0 8px 0;
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.3);
+  letter-spacing: 0.03em;
+}
+
+.barra-mantenimiento .barra-info p {
+  color: #bbb;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  max-width: 90%;
+}
+
+.barra-mantenimiento .precio-badge {
+  display: inline-block;
+  background: var(--cyan-tech);
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 24px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  align-self: flex-start;
+  box-shadow: 0 0 30px rgba(19, 178, 251, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.barra-mantenimiento:hover .precio-badge {
+  box-shadow: 0 0 50px rgba(19, 178, 251, 0.6);
+  transform: scale(1.05);
+}
+
+/* Alternar imagen a la derecha (reverse) */
+.barra-mantenimiento.reverse {
+  flex-direction: row-reverse;
+}
+
+.barra-mantenimiento.reverse .barra-info {
+  padding: 30px 30px 30px 40px;
+}
+
+.barra-mantenimiento.reverse .barra-info p {
+  max-width: 100%;
+}
+
+/* Para que en móviles se apilen y la imagen quede arriba */
+@media (max-width: 768px) {
+  .barra-mantenimiento,
+  .barra-mantenimiento.reverse {
+    flex-direction: column !important;
+    min-height: auto;
+  }
+
+  .barra-mantenimiento .barra-imagen {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .barra-mantenimiento .barra-imagen img {
+    max-height: 180px;
+    width: 60%;
+    animation: floatImageMobile 3s ease-in-out infinite;
+  }
+
+  @keyframes floatImageMobile {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0); }
+  }
+
+  .barra-mantenimiento.reverse .barra-imagen img {
+    animation: floatImageMobileReverse 3s ease-in-out infinite;
+  }
+
+  @keyframes floatImageMobileReverse {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+    100% { transform: translateY(0); }
+  }
+
+  .barra-mantenimiento .barra-info,
+  .barra-mantenimiento.reverse .barra-info {
+    padding: 16px 24px 24px;
+    text-align: center;
+  }
+
+  .barra-mantenimiento .barra-info p {
+    max-width: 100%;
+  }
+
+  .barra-mantenimiento .precio-badge {
+    align-self: center;
+  }
+
+  .barra-mantenimiento .barra-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .barra-mantenimiento::before,
+  .barra-mantenimiento::after {
+    height: 2px;
+  }
+}
+/* ================================================================
+   TÍTULOS DE SECCIÓN CON NEÓN (para todas las páginas)
+   ================================================================ */
+.section-title h2 {
+    color: #fff;
+    text-shadow: 0 0 20px rgba(19, 178, 251, 0.4);
+}
