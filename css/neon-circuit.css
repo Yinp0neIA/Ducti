@@ -2,7 +2,10 @@
    FONDO DE CIRCUITO ELECTRÓNICO NEÓN (Archivo independiente)
    ============================================================ */
 
-/* Fondo base oscuro */
+/* Fondo base oscuro
+   (Nota: style.css ya define este mismo fondo en `body` para que la
+   página se vea bien aunque este archivo no cargue; esta regla se
+   deja porque no molesta y dobla como refuerzo). */
 body {
     background: #0A192F;
     position: relative;
@@ -36,11 +39,18 @@ body::after {
     z-index: 1;
     pointer-events: none;
     background: rgba(10, 25, 47, 0.70);
+    -webkit-backdrop-filter: blur(1px);
     backdrop-filter: blur(1px);
 }
 
-/* TODO EL CONTENIDO POR ENCIMA */
-body > * {
+/* TODO EL CONTENIDO POR ENCIMA
+   CORREGIDO: esta regla igualaba en especificidad a `header { position:
+   sticky; z-index: 1000; }` de style.css. Al cargar este archivo después,
+   "ganaba" y silenciosamente convertía el header en position:relative con
+   z-index:2 — el header dejaba de quedarse fijo arriba al hacer scroll,
+   sin ningún error visible. Se excluye <header> para que conserve su
+   propio position/z-index tal cual los define style.css. */
+body > *:not(header) {
     position: relative;
     z-index: 2;
 }
@@ -84,4 +94,9 @@ body > * {
 }
 body::before {
     animation: circuitPulse 6s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        animation: none;
+    }
 }

@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DuctiTech</title>
+    <title>Servicios | DuctiTech - Reparación en Pachuca</title>
+    <meta name="description" content="Servicios de reparación DuctiTech: consolas, celulares, laptops, PC y microsoldadura en Pachuca de Soto. Más de 6 años de experiencia, diagnóstico transparente y garantía." />
+    <meta name="theme-color" content="#0A192F" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Servicios | DuctiTech" />
+    <meta property="og:description" content="Consolas, celulares, cómputo y microsoldadura, con más de 6 años de experiencia y garantía en cada reparación." />
+    <meta property="og:image" content="assets/logo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,8 +21,11 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/floating-animations.css" />
     <link rel="stylesheet" href="css/neon-circuit.css" />
+    <link rel="stylesheet" href="css/mejoras.css" />
 </head>
 <body>
+
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <!-- ========== HEADER ========== -->
     <header>
@@ -24,11 +36,11 @@
                     <span class="ducti">DUCTI</span><span class="separator"> </span><span class="tech">TECH</span>
                 </span>
             </a>
-            <nav>
+            <nav aria-label="Navegación principal">
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="about_us.html">Nosotros</a></li>
-                    <li><a href="services.html" class="active">Servicios</a></li>
+                    <li><a href="services.html" class="active" aria-current="page">Servicios</a></li>
                     <li><a href="follow_up.html">Seguimiento</a></li>
                     <li><a href="catalog.html">Catálogo</a></li>
                 </ul>
@@ -37,8 +49,9 @@
     </header>
 
     <!-- ========== HERO ========== -->
-    <section class="services-hero">
+    <section class="services-hero" id="main-content">
         <div class="container">
+            <span class="experience-chip"><i class="fas fa-award"></i> Más de 6 años de experiencia</span>
             <h1 class="neon-glow">Nuestros servicios</h1>
             <p>Soluciones técnicas para consolas, celulares, computadoras y más. Diagnóstico preciso, repuestos de calidad y garantía.</p>
         </div>
@@ -62,6 +75,36 @@
             </div>
             <div class="decor-slot decor-mr">
                 <img src="assets/animaciones/destornillador.png" alt="" class="decor-item decor-md anim-wobble" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BARRA DE CONFIANZA ========== -->
+    <section class="stats-bar" aria-label="Por qué elegir DuctiTech">
+        <div class="container stats-bar__grid">
+            <div class="stats-bar__item">
+                <span class="stats-bar__num">+6</span>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Años de experiencia</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Garantía en todos los servicios</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-microchip" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Microsoldadura especializada</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Diagnóstico transparente</span>
+                </span>
             </div>
         </div>
     </section>
@@ -171,6 +214,11 @@
                     <h4>Honestidad</h4>
                     <p>Si no podemos repararlo, te lo decimos sin compromiso.</p>
                 </div>
+                <div class="beneficio-item">
+                    <i class="fas fa-award"></i>
+                    <h4>+6 años de trayectoria</h4>
+                    <p>Experiencia acumulada reparando todo tipo de dispositivos en Pachuca.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -180,7 +228,7 @@
         <div class="container" style="text-align:center;">
             <h2 style="color: white; text-shadow: 0 0 20px rgba(19,178,251,0.3);">¿Tienes un problema técnico?</h2>
             <p style="font-size:1.1rem; margin-bottom:20px; color: var(--gray-300);">Contáctanos y te daremos una solución rápida y confiable.</p>
-            <a href="https://wa.me/5217721646924" target="_blank" class="btn btn-primary">
+            <a href="https://wa.me/5217721646924" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
         </div>
@@ -192,9 +240,10 @@
             <div class="footer-grid">
                 <div>
                     <h4>DuctiTech</h4>
+                    <p>Más de 6 años reparando tecnología en Pachuca.</p>
                     <p>Jardín Colon No. 8, Col. Centro<br />Pachuca de Soto, Hgo.</p>
-                    <p><i class="fas fa-phone"></i> 772 164 6924</p>
-                    <p><i class="fas fa-envelope"></i> contactodroidusty@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> <a href="tel:+527721646924">772 164 6924</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:contactodroidusty@gmail.com">contactodroidusty@gmail.com</a></p>
                 </div>
                 <div>
                     <h4>Enlaces</h4>
@@ -209,10 +258,10 @@
                 <div>
                     <h4>Síguenos</h4>
                     <ul class="social-links">
-                        <li><a href="https://www.facebook.com/DuctiTech/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a></li>
-                        <li><a href="https://www.instagram.com/ducti_tech?stkn=ZDNlZDc0MzIxNw==" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                        <li><a href="https://www.tiktok.com/@ducti.tech" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></li>
-                        <li><a href="https://maps.app.goo.gl/ZeSnL3kf8nuBJ69V6" target="_blank"><i class="fas fa-location-dot"></i> Google Maps</a></li>
+                        <li><a href="https://www.facebook.com/DuctiTech/" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="https://www.instagram.com/ducti_tech?stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@ducti.tech" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="https://maps.app.goo.gl/ZeSnL3kf8nuBJ69V6" target="_blank" rel="noopener noreferrer"><i class="fas fa-location-dot"></i> Google Maps</a></li>
                     </ul>
                 </div>
             </div>
@@ -221,6 +270,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5217721646924" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chatea con DuctiTech por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
 </body>
 </html>

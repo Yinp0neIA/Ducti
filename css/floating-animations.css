@@ -246,11 +246,13 @@
 
 .anim-kart {
     animation: animKart3d 8s ease-in-out infinite;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
 .anim-minecraft-item {
     animation: animMinecraftItem 3.2s linear infinite;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 

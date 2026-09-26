@@ -13,6 +13,74 @@ function translatePaymentMethod(method) {
 }
 
 // ============================================================
+// SEGURIDAD DE LA VISTA: escapar HTML y limitar URLs
+// Todo lo que viene de la base de datos se interpola en innerHTML,
+// así que se escapa siempre antes de insertarlo (evita que un campo
+// con "<" ">" '"' etc. rompa el HTML o inyecte algo). Las URLs de
+// imagen solo se aceptan si son http(s) o relativas: nunca
+// "javascript:" u otros esquemas.
+// ============================================================
+function escapeHtml(value) {
+    if (value === null || value === undefined) return '';
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function safeUrl(url) {
+    if (!url) return '#';
+    const s = String(url).trim();
+    if (/^https?:\/\//i.test(s) || /^\.{0,2}\//.test(s)) {
+        return escapeHtml(s);
+    }
+    return '#';
+}
+
+// ============================================================
+// PRIVACIDAD: mostrar menos datos del cliente en pantalla.
+// El folio + NIP ya prueban que quien consulta conoce el teléfono
+// registrado; no hace falta repetirle el nombre completo ni el
+// teléfono completo de vuelta. Se muestra solo lo necesario para
+// confirmar "sí, esta es tu orden".
+// ============================================================
+function maskName(name) {
+    const clean = cleanName(name);
+    if (!clean) return 'Cliente';
+    const parts = clean.split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return 'Cliente';
+    const first = parts[0];
+    const initials = parts.slice(1)
+        .map(p => p.charAt(0).toUpperCase() + '.')
+        .join(' ');
+    return initials ? (first + ' ' + initials) : first;
+}
+
+function maskPhone(phone) {
+    if (!phone) return 'No registrado';
+    const digits = String(phone).replace(/\D/g, '');
+    if (digits.length < 4) return '••••';
+    return '•••• •• ' + digits.slice(-4);
+}
+
+// Traduce el status de la base a una insignia de color, con
+// coincidencia flexible ya que no controlamos el texto exacto que
+// llega. Si no reconoce la palabra, usa el estilo neutro por defecto.
+function statusInfo(rawStatus) {
+    const status = (rawStatus || 'Recibido').toString();
+    const lower = status.toLowerCase();
+    let modifier = '';
+    if (/entreg/.test(lower)) modifier = 'entregado';
+    else if (/listo|termin|complet/.test(lower)) modifier = 'listo';
+    else if (/repara/.test(lower)) modifier = 'reparacion';
+    else if (/diagn/.test(lower)) modifier = 'diagnostico';
+    const label = status.charAt(0).toUpperCase() + status.slice(1);
+    return { modifier, label };
+}
+
+// ============================================================
 // LLAMADA A LA RPC DE SUPABASE
 // ============================================================
 async function consultarOrdenRPC(prefix, number, nip) {
@@ -41,10 +109,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const button = document.getElementById('searchBtn');
     const resultDiv = document.getElementById('resultado');
 
+    // Cuenta los NIP incorrectos seguidos para el mismo folio, para
+    // aplicar una pequeña espera creciente. IMPORTANTE: esto es solo
+    // una fricción del lado del cliente para desalentar que alguien
+    // pruebe NIPs a mano; no sustituye un límite real del lado del
+    // servidor (cualquiera puede llamar la función de Supabase
+    // directamente sin pasar por esta página). Ese límite debe vivir
+    // en la función `consultar_orden` o en una política de Supabase.
+    let failedAttempts = 0;
+
     // ------------------------------------------------------------
     // 1. BUSCAR ORDEN POR FOLIO (valida formato y pide NIP)
     // ------------------------------------------------------------
     function buscarOrden() {
+        failedAttempts = 0;
         const folio = input.value.trim();
         if (!folio) {
             resultDiv.innerHTML = '<p class="error">Por favor ingresa un folio.</p>';
@@ -71,24 +149,30 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ------------------------------------------------------------
-    // 2. FORMULARIO DE NIP
+    // 2. FORMULARIO DE NIP (con espera tras varios intentos fallidos)
     // ------------------------------------------------------------
     function mostrarFormularioNIP(folio, prefix, number) {
-        // FIX: faltaba esta línea. Sin ella, el contenedor de resultados
-        // se llenaba con el formulario de NIP pero quedaba oculto hasta
-        // que una búsqueda anterior con error hubiera agregado 'visible'.
         resultDiv.classList.add('visible');
+
+        const cooldownSeconds = failedAttempts >= 3
+            ? Math.min(5 * (failedAttempts - 2), 20)
+            : 0;
 
         resultDiv.innerHTML = `
             <div style="text-align:center; padding: 10px 0;">
-                <p style="color: #aaa; margin-bottom:8px;">Ingresa los últimos 4 dígitos de tu teléfono para ver la orden <strong style="color:#fff;">${folio}</strong></p>
+                <p style="color: #aaa; margin-bottom:8px;">Ingresa los últimos 4 dígitos de tu teléfono para ver la orden <strong style="color:#fff;">${escapeHtml(folio)}</strong></p>
             </div>
             <div class="nip-block">
                 <div class="input-group-nip">
-                    <input type="password" id="nipInput" maxlength="4" placeholder="Ej: 2456" inputmode="numeric" pattern="[0-9]*" />
-                    <button id="verificarNipBtn"><i class="fas fa-unlock-alt"></i> Verificar</button>
+                    <input type="password" id="nipInput" maxlength="4" placeholder="Ej: 2456" inputmode="numeric" pattern="[0-9]*" ${cooldownSeconds ? 'disabled' : ''} />
+                    <button id="verificarNipBtn" ${cooldownSeconds ? 'disabled' : ''}><i class="fas fa-unlock-alt"></i> Verificar</button>
                 </div>
-                <div id="nipError" class="nip-error" style="display:none;">NIP incorrecto. Intenta nuevamente.</div>
+                <div id="nipError" class="nip-error" style="display:none;"></div>
+                ${cooldownSeconds ? `
+                <div id="nipCooldown" class="nip-cooldown">
+                    <i class="fas fa-hourglass-half"></i>
+                    Demasiados intentos. Espera <span id="nipCooldownCount">${cooldownSeconds}</span>s e inténtalo de nuevo.
+                </div>` : ''}
                 <div style="margin-top:10px; font-size:0.8rem; color:#666;">
                     <i class="fas fa-info-circle"></i> El NIP son los últimos 4 dígitos del teléfono registrado.
                 </div>
@@ -99,9 +183,28 @@ document.addEventListener('DOMContentLoaded', function () {
         const verificarBtn = document.getElementById('verificarNipBtn');
         const nipError = document.getElementById('nipError');
 
-        nipInput.focus();
+        if (cooldownSeconds) {
+            let remaining = cooldownSeconds;
+            const countEl = document.getElementById('nipCooldownCount');
+            const cooldownBox = document.getElementById('nipCooldown');
+            const interval = setInterval(function () {
+                remaining -= 1;
+                if (countEl) countEl.textContent = remaining;
+                if (remaining <= 0) {
+                    clearInterval(interval);
+                    nipInput.disabled = false;
+                    verificarBtn.disabled = false;
+                    if (cooldownBox) cooldownBox.style.display = 'none';
+                    nipInput.focus();
+                }
+            }, 1000);
+        } else {
+            nipInput.focus();
+        }
 
         async function verificarNIP() {
+            if (nipInput.disabled) return;
+
             const nip = nipInput.value.trim();
             if (nip.length !== 4 || !/^\d{4}$/.test(nip)) {
                 nipError.textContent = 'Ingresa exactamente 4 dígitos.';
@@ -116,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const data = await consultarOrdenRPC(prefix, number, nip);
 
                 if (!data || data.error) {
+                    failedAttempts++;
                     const msg = (data && data.error) || 'NIP incorrecto. Intenta nuevamente.';
                     mostrarFormularioNIP(folio, prefix, number);
                     const errEl = document.getElementById('nipError');
@@ -126,6 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
+                failedAttempts = 0;
                 mostrarDetallesOrden(folio, data);
 
             } catch (err) {
@@ -164,105 +269,97 @@ document.addEventListener('DOMContentLoaded', function () {
         if (servicios.length > 0) {
             const totalArticulos = servicios.reduce((sum, s) => sum + (parseInt(s.quantity) || 0), 0);
             articulosHtml = `
-                <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.05);">
-                    <p style="color:#aaa; font-weight:600; margin-bottom:6px;">
-                        <i class="fas fa-boxes"></i> Artículos en reparación (${servicios.length})
-                    </p>
-                    <div style="overflow-x:auto; border-radius:8px; border:1px solid rgba(19,178,251,0.15);">
-                        <table style="width:100%; border-collapse:collapse; background:rgba(10,25,47,0.4);">
+                <div class="orden-bloque">
+                    <p class="orden-bloque-titulo"><i class="fas fa-boxes"></i> Artículos en reparación (${servicios.length})</p>
+                    <div class="orden-tabla-wrap">
+                        <table class="orden-tabla">
                             <thead>
-                                <tr style="background:rgba(19,178,251,0.1); color:#fff;">
-                                    <th style="padding:8px 12px; text-align:left; font-size:0.8rem;">Artículo</th>
-                                    <th style="padding:8px 12px; text-align:center; font-size:0.8rem;">Cantidad</th>
-                                    <th style="padding:8px 12px; text-align:left; font-size:0.8rem;">Falla</th>
-                                    <th style="padding:8px 12px; text-align:center; font-size:0.8rem;">Estado</th>
+                                <tr>
+                                    <th>Artículo</th>
+                                    <th class="centrado">Cantidad</th>
+                                    <th>Falla</th>
+                                    <th class="centrado">Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${servicios.map(s => `
-                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <td style="padding:8px 12px; color:#fff; font-size:0.9rem;">#${s.article_id || 'N/A'}</td>
-                                        <td style="padding:8px 12px; color:#fff; text-align:center; font-size:0.9rem;">${s.quantity || 1}</td>
-                                        <td style="padding:8px 12px; color:#ccc; font-size:0.85rem;">${s.falla_principal || 'No especificada'}</td>
-                                        <td style="padding:8px 12px; text-align:center; font-size:0.8rem;">
-                                            <span style="display:inline-block; padding:2px 10px; border-radius:12px; background:rgba(19,178,251,0.15); color:#13B2FB; border:1px solid rgba(19,178,251,0.3);">${s.status || 'recibido'}</span>
+                                ${servicios.map(s => {
+                                    const info = statusInfo(s.status);
+                                    return `
+                                    <tr>
+                                        <td>#${escapeHtml(s.article_id || 'N/A')}</td>
+                                        <td class="centrado">${escapeHtml(s.quantity || 1)}</td>
+                                        <td>${escapeHtml(s.falla_principal || 'No especificada')}</td>
+                                        <td class="centrado">
+                                            <span class="estado-badge${info.modifier ? ' estado-badge--' + info.modifier : ''}">${escapeHtml(info.label)}</span>
                                         </td>
-                                    </tr>
-                                `).join('')}
+                                    </tr>`;
+                                }).join('')}
                             </tbody>
                         </table>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-top:10px; padding:8px 16px; background:rgba(19,178,251,0.05); border-radius:6px;">
-                        <span style="color:#aaa;">Total de artículos:</span>
-                        <span style="color:#fff; font-weight:600;">${totalArticulos}</span>
+                    <div class="orden-resumen-fila">
+                        <span>Total de artículos:</span>
+                        <span class="valor-fuerte">${escapeHtml(totalArticulos)}</span>
                     </div>
                 </div>
             `;
         } else {
-            articulosHtml = '<p style="color:#888; margin-top:12px;"><i class="fas fa-info-circle"></i> No hay artículos registrados para esta orden.</p>';
+            articulosHtml = '<p class="orden-vacio"><i class="fas fa-info-circle"></i> No hay artículos registrados para esta orden.</p>';
         }
 
         // Imágenes
         let imagesHtml = '';
         if (imagenes.length > 0) {
             imagesHtml = `
-                <div style="margin-top:16px;">
-                    <p style="color:#aaa; font-weight:600; margin-bottom:8px;">
-                        <i class="fas fa-images"></i> Imágenes del servicio
-                    </p>
+                <div class="orden-bloque">
+                    <p class="orden-bloque-titulo"><i class="fas fa-images"></i> Imágenes del servicio</p>
                     <div class="imagenes-grid">
                         ${imagenes.map(img => `
-                            <a href="${img.image_url}" target="_blank">
-                                <img src="${img.image_url}" alt="Imagen del servicio" loading="lazy" />
+                            <a href="${safeUrl(img.image_url)}" target="_blank" rel="noopener noreferrer">
+                                <img src="${safeUrl(img.image_url)}" alt="Imagen del servicio" loading="lazy" />
                             </a>
                         `).join('')}
                     </div>
                 </div>
             `;
         } else {
-            imagesHtml = '<p style="color:#666; margin-top:12px;"><i class="fas fa-info-circle"></i> Este servicio no tiene imágenes registradas.</p>';
+            imagesHtml = '<p class="orden-vacio"><i class="fas fa-info-circle"></i> Este servicio no tiene imágenes registradas.</p>';
         }
 
         // Pagos
         let paymentsHtml = '';
         if (pagos.length > 0) {
             paymentsHtml = `
-                <div style="margin-top:16px; border-top:1px solid rgba(255,255,255,0.05); padding-top:16px;">
-                    <p style="color:#aaa; font-weight:600; margin-bottom:8px;">
-                        <i class="fas fa-coins"></i> Pagos realizados (${pagos.length})
-                    </p>
-                    <div style="overflow-x:auto; border-radius:8px; border:1px solid rgba(19,178,251,0.15);">
-                        <table style="width:100%; border-collapse:collapse; background:rgba(10,25,47,0.4);">
+                <div class="orden-bloque">
+                    <p class="orden-bloque-titulo"><i class="fas fa-coins"></i> Pagos realizados (${pagos.length})</p>
+                    <div class="orden-tabla-wrap">
+                        <table class="orden-tabla">
                             <thead>
-                                <tr style="background:rgba(19,178,251,0.1); color:#fff;">
-                                    <th style="padding:8px 12px; text-align:left; font-size:0.8rem;">Fecha</th>
-                                    <th style="padding:8px 12px; text-align:left; font-size:0.8rem;">Monto</th>
-                                    <th style="padding:8px 12px; text-align:left; font-size:0.8rem;">Método</th>
-                                </tr>
+                                <tr><th>Fecha</th><th>Monto</th><th>Método</th></tr>
                             </thead>
                             <tbody>
                                 ${pagos.map(p => `
-                                    <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
-                                        <td style="padding:8px 12px; color:#ccc; font-size:0.9rem;">${new Date(p.payment_date).toLocaleDateString('es-MX')}</td>
-                                        <td style="padding:8px 12px; color:#fff; font-size:0.9rem; font-weight:600;">$${Number(p.amount).toFixed(2)}</td>
-                                        <td style="padding:8px 12px; color:#ccc; font-size:0.9rem;">${translatePaymentMethod(p.payment_method)}</td>
+                                    <tr>
+                                        <td>${escapeHtml(new Date(p.payment_date).toLocaleDateString('es-MX'))}</td>
+                                        <td><strong>$${escapeHtml(Number(p.amount).toFixed(2))}</strong></td>
+                                        <td>${escapeHtml(translatePaymentMethod(p.payment_method))}</td>
                                     </tr>
                                 `).join('')}
                             </tbody>
                         </table>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-top:12px; padding:10px 16px; background:rgba(19,178,251,0.05); border-radius:8px;">
-                        <span style="color:#aaa;">Total pagado:</span>
-                        <span style="color:#4CAF50; font-weight:700;">$${Number(data.total_pagado).toFixed(2)}</span>
+                    <div class="orden-resumen-fila pagado">
+                        <span>Total pagado:</span>
+                        <span class="valor-fuerte">$${escapeHtml(Number(data.total_pagado).toFixed(2))}</span>
                     </div>
-                    <div style="display:flex; justify-content:space-between; margin-top:6px; padding:10px 16px; background:rgba(19,178,251,0.08); border-radius:8px;">
-                        <span style="color:#aaa;">Saldo pendiente:</span>
-                        <span style="color:${data.saldo > 0 ? '#FF9800' : '#4CAF50'}; font-weight:700;">$${Number(data.saldo).toFixed(2)}</span>
+                    <div class="orden-resumen-fila saldo">
+                        <span>Saldo pendiente:</span>
+                        <span class="valor-fuerte ${data.saldo > 0 ? 'pendiente' : 'saldado'}">$${escapeHtml(Number(data.saldo).toFixed(2))}</span>
                     </div>
                 </div>
             `;
         } else {
-            paymentsHtml = '<p style="color:#888; margin-top:12px;"><i class="fas fa-info-circle"></i> No hay pagos registrados para esta orden.</p>';
+            paymentsHtml = '<p class="orden-vacio"><i class="fas fa-info-circle"></i> No hay pagos registrados para esta orden.</p>';
         }
 
         const fecha = orden.order_date
@@ -274,28 +371,26 @@ document.addEventListener('DOMContentLoaded', function () {
             : 'Pendiente';
 
         resultDiv.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-                <h3 style="color:#fff; font-family: var(--font-primary); margin:0;">Orden: ${folio}</h3>
-                <span style="font-size:0.8rem; color:#666;">
-                    <i class="fas fa-lock" style="color:var(--cyan-tech);"></i> Verificado
-                </span>
+            <div class="orden-header">
+                <h3>Orden: ${escapeHtml(folio)}</h3>
+                <span class="orden-verificado"><i class="fas fa-lock"></i> Verificado</span>
             </div>
             <div class="orden-info">
                 <span class="label">Cliente:</span>
-                <span class="valor">${cleanName(orden.client_name)}</span>
+                <span class="valor">${escapeHtml(maskName(orden.client_name))}</span>
                 <span class="label">Teléfono:</span>
-                <span class="valor">${orden.client_telephone || 'No registrado'}</span>
+                <span class="valor">${escapeHtml(maskPhone(orden.client_telephone))}</span>
                 <span class="label">Tipo de artículo:</span>
-                <span class="valor">${orden.article_type_name || 'Artículo no especificado'}</span>
+                <span class="valor">${escapeHtml(orden.article_type_name || 'Artículo no especificado')}</span>
                 <span class="label">Fecha de ingreso:</span>
-                <span class="valor">${fecha}</span>
+                <span class="valor">${escapeHtml(fecha)}</span>
                 <span class="label">Monto total:</span>
-                <span class="valor">${total}</span>
+                <span class="valor">${escapeHtml(total)}</span>
             </div>
             ${articulosHtml}
             ${paymentsHtml}
             ${imagesHtml}
-            <p style="margin-top:20px; font-size:0.9rem; color:#888; border-top:1px solid rgba(255,255,255,0.05); padding-top:16px;">
+            <p class="orden-nota-final">
                 <i class="fas fa-info-circle"></i> Si requieres más información, contáctanos al 772 164 6924.
             </p>
         `;

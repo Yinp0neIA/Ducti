@@ -1,0 +1,273 @@
+/* ==========================================================================
+   mejoras.css
+   Componentes añadidos a DuctiTech: no modifica style.css, neon-circuit.css,
+   floating-animations.css ni catalog.css — solo se suma a ellos.
+   Reutiliza las variables de color ya usadas en el sitio (--cyan-tech,
+   --cobalt, --gray-300) con un valor de respaldo por si no existieran.
+   ========================================================================== */
+
+/* ---------- Accesibilidad: enlace "saltar al contenido" ---------- */
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 12px;
+    /* Por encima del header (1000) y del lightbox del catálogo (1100),
+       para que siempre sea visible al recibir foco por teclado. */
+    z-index: 1200;
+    background: #0A192F;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 1px solid var(--cyan-tech, #13b2fb);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
+}
+
+/* ---------- Barra de confianza / estadísticas ---------- */
+.stats-bar {
+    position: relative;
+    z-index: 2;
+    padding: 28px 0;
+    background: rgba(10, 25, 47, 0.65);
+    border-top: 1px solid rgba(19, 178, 251, 0.15);
+    border-bottom: 1px solid rgba(19, 178, 251, 0.15);
+}
+
+.stats-bar__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px 48px;
+    text-align: center;
+}
+
+.stats-bar__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 180px;
+    justify-content: center;
+}
+
+.stats-bar__item i {
+    font-size: 1.4rem;
+    color: var(--cyan-tech, #13b2fb);
+    flex-shrink: 0;
+}
+
+.stats-bar__num {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+.stats-bar__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.25;
+}
+
+.stats-bar__label {
+    color: var(--gray-300, #b8c2d1);
+    font-size: 0.92rem;
+}
+
+/* ---------- Insignia de experiencia (chip inline en el hero) ---------- */
+.experience-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 18px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: rgba(19, 178, 251, 0.08);
+    border: 1px solid rgba(19, 178, 251, 0.35);
+    color: var(--cyan-tech, #13b2fb);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.experience-chip i {
+    font-size: 0.85rem;
+}
+
+/* ---------- Botón flotante de WhatsApp ---------- */
+.whatsapp-float {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    z-index: 900;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover,
+.whatsapp-float:focus-visible {
+    transform: scale(1.08);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 480px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+        right: 14px;
+        bottom: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float {
+        transition: none;
+    }
+}
+
+/* ---------- Enlace a reseñas de Google ---------- */
+.ver-mas-resenas {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ver-mas-resenas a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-300, #b8c2d1);
+    font-size: 0.9rem;
+    padding: 8px 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.ver-mas-resenas a:hover,
+.ver-mas-resenas a:focus-visible {
+    color: var(--cyan-tech, #13b2fb);
+    border-bottom-color: currentColor;
+}
+
+.ver-mas-resenas i {
+    color: #ea4335;
+}
+
+/* ---------- Aviso de precios (catálogo) ---------- */
+.precios-nota {
+    max-width: 720px;
+    margin: 24px auto 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--cyan-tech, #13b2fb);
+    background: rgba(19, 178, 251, 0.06);
+    color: var(--gray-300, #b8c2d1);
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+/* ---------- Ayuda de seguimiento ---------- */
+.seguimiento-ayuda {
+    max-width: 560px;
+    margin: 14px auto 0;
+    color: var(--gray-300, #b8c2d1);
+    font-size: 0.88rem;
+    text-align: center;
+}
+
+.seguimiento-contacto {
+    max-width: 560px;
+    margin: 32px auto 0;
+    padding: 22px;
+    text-align: center;
+    background: rgba(10, 25, 47, 0.6);
+    border: 1px solid rgba(19, 178, 251, 0.2);
+    border-radius: 10px;
+}
+
+.seguimiento-contacto p {
+    color: var(--gray-300, #b8c2d1);
+    margin-bottom: 14px;
+}
+
+/* ---------- FAQ / detalles de estados de servicio ---------- */
+.faq-estados {
+    max-width: 640px;
+    margin: 40px auto 0;
+}
+
+.faq-estados summary {
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 16px;
+    background: rgba(10, 25, 47, 0.6);
+    border: 1px solid rgba(19, 178, 251, 0.2);
+    border-radius: 8px;
+    list-style: none;
+}
+
+.faq-estados summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-estados summary::after {
+    content: "+";
+    float: right;
+    color: var(--cyan-tech, #13b2fb);
+    font-weight: 700;
+}
+
+.faq-estados[open] summary::after {
+    content: "−";
+}
+
+.faq-estados ul {
+    list-style: none;
+    padding: 16px 18px;
+    margin: 0;
+    border: 1px solid rgba(19, 178, 251, 0.12);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.faq-estados li {
+    display: flex;
+    gap: 10px;
+    color: var(--gray-300, #b8c2d1);
+    padding: 6px 0;
+    font-size: 0.92rem;
+}
+
+.faq-estados li i {
+    color: var(--cyan-tech, #13b2fb);
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.faq-estados li strong {
+    color: #fff;
+}
+
+/* ---------- Responsive: apilar la barra de estadísticas en móvil ---------- */
+@media (max-width: 560px) {
+    .stats-bar__grid {
+        gap: 20px 28px;
+    }
+    .stats-bar__item {
+        min-width: 140px;
+    }
+}

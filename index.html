@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DuctiTech</title>
-    <meta name="description" content="DuctiTech: reparación de consolas (Xbox, PlayStation, Nintendo), computadoras, laptops, celulares y tabletas en Pachuca de Soto, con garantía y diagnóstico transparente." />
+    <title>DuctiTech | Reparación de consolas, computadoras y celulares en Pachuca</title>
+    <meta name="description" content="DuctiTech: más de 6 años reparando consolas (Xbox, PlayStation, Nintendo), computadoras, laptops, celulares y tabletas en Pachuca de Soto, con garantía y diagnóstico transparente." />
     <meta name="theme-color" content="#0A192F" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="DuctiTech - Reparación de electrónicos" />
-    <meta property="og:description" content="Especialistas en consolas, computadoras, celulares y más. Diagnóstico preciso, repuestos originales y garantía." />
+    <meta property="og:description" content="Más de 6 años como especialistas en consolas, computadoras, celulares y más. Diagnóstico preciso, repuestos originales y garantía." />
     <meta property="og:image" content="assets/logo.png" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
@@ -22,6 +22,32 @@
     <!-- Estilos principales -->
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/neon-circuit.css" />
+    <link rel="stylesheet" href="css/mejoras.css" />
+
+    <!-- Datos estructurados para buscadores -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "DuctiTech",
+        "description": "Taller especializado en reparación de consolas, computadoras, laptops, celulares y tabletas, con más de 6 años de experiencia en Pachuca de Soto, Hidalgo.",
+        "telephone": "+527721646924",
+        "email": "contactodroidusty@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jardín Colón No. 8, Col. Centro",
+            "addressLocality": "Pachuca de Soto",
+            "addressRegion": "Hidalgo",
+            "addressCountry": "MX"
+        },
+        "sameAs": [
+            "https://www.facebook.com/DuctiTech/",
+            "https://www.instagram.com/ducti_tech",
+            "https://www.tiktok.com/@ducti.tech"
+        ],
+        "priceRange": "$500 - $800 MXN"
+    }
+    </script>
 
     <style>
         :root {
@@ -174,6 +200,8 @@
 </head>
 <body>
 
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- ========== HEADER ========== -->
     <header>
         <div class="container">
@@ -196,10 +224,11 @@
     </header>
 
     <!-- ========== HERO ========== -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="container">
+            <span class="experience-chip"><i class="fas fa-award"></i> Más de 6 años reparando electrónicos</span>
             <h1 class="neon-glow">Reparación de <span class="highlight">electrónicos</span> con garantía</h1>
-            <p>Especialistas en consolas, computadoras, celulares y más. Confía en profesionales para recuperar tus dispositivos.</p>
+            <p>Especialistas en consolas, computadoras, celulares y más. Con más de 6 años de experiencia en Pachuca, confía en profesionales para recuperar tus dispositivos.</p>
             <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
                 <a href="follow_up.html" class="btn btn-primary">
                     <i class="fas fa-search"></i> Seguimiento de servicio
@@ -222,6 +251,36 @@
             <img src="assets/animaciones/pinkghost.gif" alt="" class="gif-float gif-accent gif-4" />
             <!-- Fantasma rojo (zona derecha media-baja) -->
             <img src="assets/animaciones/redghost.gif" alt="" class="gif-float gif-small gif-5" />
+        </div>
+    </section>
+
+    <!-- ========== BARRA DE CONFIANZA ========== -->
+    <section class="stats-bar" aria-label="Por qué elegir DuctiTech">
+        <div class="container stats-bar__grid">
+            <div class="stats-bar__item">
+                <span class="stats-bar__num">+6</span>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Años de experiencia</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Garantía en todos los servicios</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-microchip" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Microsoldadura especializada</span>
+                </span>
+            </div>
+            <div class="stats-bar__item">
+                <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                <span class="stats-bar__text">
+                    <span class="stats-bar__label">Diagnóstico transparente</span>
+                </span>
+            </div>
         </div>
     </section>
 
@@ -454,6 +513,7 @@
             <div class="footer-grid">
                 <div>
                     <h4>DuctiTech</h4>
+                    <p>Más de 6 años reparando tecnología en Pachuca.</p>
                     <p>Jardín Colon No. 8, Col. Centro<br />Pachuca de Soto, Hgo.</p>
                     <p><i class="fas fa-phone"></i> <a href="tel:+527721646924">772 164 6924</a></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:contactodroidusty@gmail.com">contactodroidusty@gmail.com</a></p>
@@ -483,6 +543,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5217721646924" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chatea con DuctiTech por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- ========== SCRIPTS EXTERNOS ========== -->
     <script src="js/slider.js"></script>

@@ -46,10 +46,11 @@
   font-size: 0.85rem;
 }
 
-/* ---- TÍTULOS DE SECCIÓN CON ESTILO NEÓN (CORREGIDO) ----
-   Se agranda un poco y se separa más de la píldora de marca y
-   del párrafo de abajo, para que quede claro que es el elemento
-   dominante (el modelo), no una continuación de la marca. */
+/* ---- TÍTULOS DE SECCIÓN CON ESTILO NEÓN ----
+   Se agranda un poco y se separa más de la píldora de marca y del
+   párrafo de abajo, para que quede claro que es el elemento
+   dominante (el modelo), no una continuación de la marca. El brillo
+   sutil queda activo siempre, y se intensifica al pasar el cursor. */
 .section-title h2 {
   font-size: 2.6rem;
   margin: 0 0 14px;
@@ -57,7 +58,7 @@
   display: inline-block;
   color: #fff;
   line-height: 1.15;
-  /* text-shadow eliminado: ahora usa solo el de .neon-glow */
+  text-shadow: 0 0 20px rgba(19, 178, 251, 0.4);
   transition: text-shadow 0.3s ease;
 }
 
@@ -89,6 +90,231 @@
   color: #aaa;
 }
 
+/* ==========================================================================
+   PESTAÑAS DE MARCA (Xbox / Nintendo / PlayStation / Laptops)
+   Reemplazan las 4 secciones largas apiladas por un solo bloque
+   compacto: se elige una marca y solo se muestra su contenido.
+   ========================================================================== */
+.marca-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.marca-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid rgba(19, 178, 251, 0.3);
+  background: rgba(19, 178, 251, 0.05);
+  color: #cfe4f7;
+  font-family: var(--font-primary, inherit);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.marca-tab:hover {
+  border-color: var(--cyan-tech, #13b2fb);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.marca-tab:focus-visible {
+  outline: 2px solid var(--cyan-tech, #13b2fb);
+  outline-offset: 2px;
+}
+
+.marca-tab.active {
+  background: var(--cyan-tech, #13b2fb);
+  border-color: var(--cyan-tech, #13b2fb);
+  color: #fff;
+  box-shadow: 0 4px 22px rgba(19, 178, 251, 0.4);
+}
+
+.marca-panel {
+  animation: marcaPanelIn 0.35s ease;
+}
+
+.marca-panel[hidden] {
+  display: none;
+}
+
+@keyframes marcaPanelIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.marca-panel-grid {
+  margin-bottom: 36px;
+}
+
+.marca-panel-precio h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.marca-panel-nota {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.95rem;
+  max-width: 520px;
+  margin: 12px auto 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marca-panel {
+    animation: none !important;
+  }
+  .marca-tab {
+    transition: none !important;
+  }
+  .marca-tab:hover {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .marca-tab {
+    font-size: 0.72rem;
+    padding: 10px 16px;
+  }
+}
+
+/* ==========================================================================
+   TARJETAS "VOLTEABLES" (mantenimientos destacados)
+   Sustituyen a las barras horizontales full-width: mismo contenido,
+   en una cuadrícula compacta que se voltea con hover (o con clic /
+   Enter en móvil y teclado).
+   ========================================================================== */
+.flip-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 12px;
+}
+
+.flip-card {
+  height: 260px;
+  perspective: 1200px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+
+.flip-card:focus-visible {
+  outline: 2px solid var(--cyan-tech, #13b2fb);
+  outline-offset: 4px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(19, 178, 251, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.flip-card-front {
+  background: rgba(255, 255, 255, 0.04);
+  gap: 10px;
+}
+
+.flip-card-front img {
+  max-height: 100px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(19, 178, 251, 0.3));
+  margin-bottom: 4px;
+}
+
+.flip-card-front h4 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.flip-card-front .flip-hint {
+  color: #888;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+.flip-card-back {
+  background: rgba(8, 20, 38, 0.96);
+  transform: rotateY(180deg);
+  gap: 14px;
+  border-color: rgba(19, 178, 251, 0.5);
+}
+
+.flip-card-back p {
+  color: #cfd8e6;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.flip-card:hover .flip-card-front,
+.flip-card.is-flipped .flip-card-front {
+  border-color: rgba(19, 178, 251, 0.6);
+}
+
+@media (max-width: 900px) {
+  .flip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .flip-grid {
+    grid-template-columns: 1fr;
+  }
+  .flip-card {
+    height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transition: none !important;
+  }
+}
+
 /* ---- Rejilla de dispositivos ---- */
 .catalogo-grid {
   display: grid;
@@ -114,6 +340,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -192,6 +419,7 @@
   background: rgba(10, 25, 47, 0.55);
   border: 1px solid rgba(19, 178, 251, 0.25);
   border-radius: 10px;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -255,6 +483,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -302,7 +531,13 @@
   justify-content: center;
   flex-direction: column;
   padding: 24px;
-  z-index: 999;
+  /* Antes: 999. El header quedaba por accidente detrás de todo por un
+     bug ya corregido en neon-circuit.css que le bajaba el z-index; al
+     arreglar ese bug, el header (z-index 1000) volvía a taparse el
+     lightbox. Se sube por encima de él para que siga cubriendo toda
+     la pantalla, header incluido, al abrirse. */
+  z-index: 1100;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
@@ -373,7 +608,8 @@
   .catalogo-card img,
   .callout-card img,
   .dt-lightbox-close,
-  .dt-lightbox img {
+  .dt-lightbox img,
+  .barra-mantenimiento .barra-imagen img {
     transition: none !important;
     animation: none !important;
   }
@@ -430,6 +666,10 @@
 
 /* ================================================================
    BARRAS HORIZONTALES DE MANTENIMIENTO (FULL-WIDTH + ANIMACIÓN)
+   Nota: catalog.html ya no usa este bloque (se sustituyó por la
+   cuadrícula de tarjetas volteables ".flip-grid" de arriba, para
+   acortar la página y añadir interacción de hover). Se deja aquí
+   sin usar por si se quiere reutilizar el efecto en el futuro.
    ================================================================ */
 
 /* Contenedor de barras: ocupa todo el ancho */
@@ -448,6 +688,7 @@
   background: rgba(255, 255, 255, 0.04);
   border-top: 1px solid rgba(19, 178, 251, 0.2);
   border-bottom: 1px solid rgba(19, 178, 251, 0.2);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   min-height: 200px;
   position: relative;
@@ -671,11 +912,4 @@
   .barra-mantenimiento::after {
     height: 2px;
   }
-}
-/* ================================================================
-   TÍTULOS DE SECCIÓN CON NEÓN (para todas las páginas)
-   ================================================================ */
-.section-title h2 {
-    color: #fff;
-    text-shadow: 0 0 20px rgba(19, 178, 251, 0.4);
 }
