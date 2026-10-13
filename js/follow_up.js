@@ -1,5 +1,5 @@
-const SUPABASE_URL = 'https://hhotnexzmehphsrnpihb.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_vlwTA8RfDF_vKdp9GYwHDg_arsusIC-';
+const SUPABASE_URL = 'https://iwvzhldpfimcdpeovrmw.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_oTHB0E0XYj5cqdlGFvG-XA_mgsKxhl0';
 
 function cleanName(name) {
     if (!name) return name;
@@ -12,14 +12,6 @@ function translatePaymentMethod(method) {
     return translations[method.toLowerCase()] || method;
 }
 
-// ============================================================
-// SEGURIDAD DE LA VISTA: escapar HTML y limitar URLs
-// Todo lo que viene de la base de datos se interpola en innerHTML,
-// así que se escapa siempre antes de insertarlo (evita que un campo
-// con "<" ">" '"' etc. rompa el HTML o inyecte algo). Las URLs de
-// imagen solo se aceptan si son http(s) o relativas: nunca
-// "javascript:" u otros esquemas.
-// ============================================================
 function escapeHtml(value) {
     if (value === null || value === undefined) return '';
     return String(value)

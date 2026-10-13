@@ -371,8 +371,18 @@ nav a.active {
 
 .grid-dispositivos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 30px;
+    /* 10 tarjetas: 5 por fila en escritorio (2 filas exactas) y 2 por
+       fila en tablet/celular (5 filas exactas), sin tarjetas sueltas.
+       Antes el HTML traía un estilo en línea que fijaba 5 columnas en
+       todos los tamaños y anulaba las reglas responsive de abajo. */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+}
+@media (max-width: 1100px) {
+    .grid-dispositivos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
 }
 
 .card-dispositivo {
@@ -419,6 +429,7 @@ nav a.active {
     font-weight: 700;
     font-size: 1.1rem;
     margin-bottom: 6px;
+    overflow-wrap: anywhere;
 }
 
 .card-body p {
@@ -619,11 +630,10 @@ footer a:hover {
     .hero p { font-size: 1rem; }
     .section { padding: 50px 0; }
     .grid-dispositivos {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 20px;
+        gap: 16px;
     }
     .card-image {
-        height: 140px;
+        height: 150px;
     }
     .footer-grid {
         grid-template-columns: 1fr 1fr;
@@ -650,7 +660,12 @@ footer a:hover {
     .logo { font-size: 1.2rem; }
     .logo img { height: 45px; }
     .btn { font-size: 0.8rem; padding: 12px 24px; }
-    .grid-dispositivos { grid-template-columns: 1fr 1fr; }
+    .grid-dispositivos { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .card-dispositivo { border-radius: 14px; }
+    .card-image { height: 110px; }
+    .card-body { padding: 12px 12px 14px; }
+    .card-body h3 { font-size: 0.85rem; }
+    .card-body p { font-size: 0.78rem; line-height: 1.45; }
     .footer-grid { grid-template-columns: 1fr; text-align: center; }
     .slide { padding: 20px 16px 16px; }
     .testimonio-item .testimonio-header { flex-wrap: wrap; gap: 8px; }
@@ -803,7 +818,18 @@ footer a:hover {
 
 .cta-about {
     margin: 40px 0 20px;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+@media (max-width: 480px) {
+    /* En celular los botones se apilan a lo ancho, con separación */
+    .cta-about .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
 }
 
 /* ================================================================
@@ -1148,6 +1174,179 @@ footer a:hover {
 }
 .detalles-orden.visible {
     display: block;
+}
+
+/* ---- Insignias de estado por tipo (usadas por follow_up.js) ---- */
+.resultado .estado-badge--diagnostico {
+    background: rgba(255, 152, 0, 0.15);
+    color: #FF9800;
+    border-color: rgba(255, 152, 0, 0.35);
+}
+.resultado .estado-badge--reparacion {
+    background: rgba(52, 43, 249, 0.18);
+    color: #9b95ff;
+    border-color: rgba(52, 43, 249, 0.4);
+}
+.resultado .estado-badge--listo {
+    background: rgba(76, 175, 80, 0.15);
+    color: #4CAF50;
+    border-color: rgba(76, 175, 80, 0.35);
+}
+.resultado .estado-badge--entregado {
+    background: rgba(173, 181, 189, 0.12);
+    color: #ADB5BD;
+    border-color: rgba(173, 181, 189, 0.3);
+}
+
+/* ---- Vista de orden verificada (follow_up.js) ---- */
+.orden-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+.orden-header h3 {
+    margin: 0;
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    color: #fff;
+}
+.orden-verificado {
+    font-size: 0.8rem;
+    color: #666;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.orden-verificado i { color: var(--cyan-tech); }
+
+.orden-bloque {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+.orden-bloque-titulo {
+    color: #aaa;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.orden-tabla-wrap {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(19,178,251,0.15);
+}
+.orden-tabla {
+    width: 100%;
+    min-width: 420px;
+    border-collapse: collapse;
+    background: rgba(10,25,47,0.4);
+}
+.orden-tabla th {
+    background: rgba(19,178,251,0.1);
+    color: #fff;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 0.8rem;
+}
+.orden-tabla th.centrado,
+.orden-tabla td.centrado {
+    text-align: center;
+}
+.orden-tabla td {
+    padding: 8px 12px;
+    color: #ccc;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.orden-tabla tr:last-child td {
+    border-bottom: none;
+}
+.orden-resumen-fila {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: rgba(19,178,251,0.05);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+.orden-resumen-fila .valor-fuerte {
+    color: #fff;
+    font-weight: 600;
+}
+.orden-resumen-fila.pagado .valor-fuerte {
+    color: #4CAF50;
+    font-weight: 700;
+}
+.orden-resumen-fila.saldo .valor-fuerte.pendiente { color: #FF9800; }
+.orden-resumen-fila.saldo .valor-fuerte.saldado { color: #4CAF50; }
+.orden-vacio {
+    color: #888;
+    margin-top: 12px;
+    font-size: 0.9rem;
+}
+.orden-nota-final {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #888;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 16px;
+}
+
+/* ---- Aviso de espera tras varios NIP incorrectos (protección ligera
+   del lado del cliente; el límite real debe vivir en el backend) ---- */
+.nip-cooldown {
+    color: #FF9800;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+}
+
+/* ---- Flechas del slider de testimonios ---- */
+.testimonios-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(19,178,251,0.3);
+    background: rgba(10,25,47,0.75);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+.testimonios-arrow:hover {
+    background: var(--cyan-tech);
+    border-color: var(--cyan-tech);
+}
+.testimonios-arrow:focus-visible {
+    outline: 2px solid var(--cyan-tech);
+    outline-offset: 2px;
+}
+.testimonios-arrow--prev { left: 10px; }
+.testimonios-arrow--next { right: 10px; }
+@media (max-width: 640px) {
+    .testimonios-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+    }
+    .testimonios-arrow--prev { left: 4px; }
+    .testimonios-arrow--next { right: 4px; }
 }
 
 @media (max-width: 768px) {

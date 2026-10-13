@@ -271,3 +271,42 @@
         min-width: 140px;
     }
 }
+
+
+/* ---------- Botones del hero (inicio): separados y apilados en celular ---------- */
+.hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+@media (max-width: 480px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .hero-cta .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+}
+
+/* ---------- Carrusel de testimonios ---------- */
+.indicadores .dot {
+    padding: 0;
+    appearance: none;
+    -webkit-appearance: none;
+}
+/* En celular las flechas ocupan el margen lateral: se deja espacio para que no tapen el texto */
+@media (max-width: 640px) {
+    .testimonios-slider .slide {
+        padding: 24px 42px 18px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .slides-wrapper {
+        transition: none;
+    }
+}

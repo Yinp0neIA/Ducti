@@ -60,7 +60,6 @@
                 <a href="#catalogo-marcas" class="btn btn-outline" data-tab="nintendo"><i class="fas fa-gamepad"></i> Nintendo</a>
                 <a href="#catalogo-marcas" class="btn btn-outline" data-tab="playstation"><i class="fa-brands fa-playstation"></i> PlayStation</a>
                 <a href="#catalogo-marcas" class="btn btn-outline" data-tab="laptops"><i class="fas fa-laptop"></i> Laptops</a>
-                <a href="#mantenimientos-destacados" class="btn btn-primary"><i class="fas fa-tags"></i> Mantenimientos destacados</a>
             </div>
         </div>
 
@@ -123,8 +122,8 @@
     <section class="section" id="catalogo-marcas">
         <div class="container">
             <div class="section-title">
-                <h2 class="neon-glow">Catálogo por marca</h2>
-                <p>Modelos que reparamos y precio de mantenimiento preventivo de cada marca.</p>
+                <h2 class="neon-glow">Catálogo y mantenimientos</h2>
+                <p>Elige una marca: verás los modelos que reparamos y el precio de mantenimiento de cada uno.</p>
             </div>
 
             <!-- Pestañas -->
@@ -148,129 +147,404 @@
 
                 <!-- ---- XBOX ---- -->
                 <div class="marca-panel active" id="panel-xbox" role="tabpanel" aria-labelledby="tab-xbox">
+                    <h3 class="panel-subtitulo"><i class="fas fa-images"></i> Modelos que reparamos</h3>
                     <div class="catalogo-grid marca-panel-grid">
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/3YJziUi.jpeg" alt="Xbox Clásico, Xbox 360 y Xbox One" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/xbox-clasico-360-one.jpg" alt="Xbox Clásico, Xbox 360 y Xbox One" loading="lazy" tabindex="0" />
                             <figcaption>Xbox Clásico · Xbox 360 · Xbox One</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/Gh1PNj5.jpeg" alt="Xbox Series X" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/xbox-series-x.jpg" alt="Xbox Series X" loading="lazy" tabindex="0" />
                             <figcaption>Xbox Series X</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/YkFH2wP.jpeg" alt="Xbox Series S" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/xbox-series-s.jpg" alt="Xbox Series S" loading="lazy" tabindex="0" />
                             <figcaption>Xbox Series S</figcaption>
                         </figure>
                     </div>
-                    <div class="marca-panel-precio">
-                        <h3><i class="fas fa-tags"></i> Precio de mantenimiento</h3>
+                    <h3 class="panel-subtitulo"><i class="fas fa-tags"></i> Precios de mantenimiento</h3>
+                    <div class="tabla-wrap">
                         <div class="tabla-scroll">
                             <table class="tabla-precios">
                                 <thead>
                                     <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>Xbox Clásico</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>Xbox 360</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>Xbox One</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>Xbox Series X</td><td>3 meses</td><td>$800</td></tr>
-                                    <tr><td>Xbox Series S</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Xbox Clásico</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Xbox 360</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Xbox One</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Xbox Series X</td><td>3 meses</td><td>$800</td></tr>
+                                <tr><td>Xbox Series S</td><td>3 meses</td><td>$500</td></tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <h3 class="panel-subtitulo"><i class="fas fa-screwdriver-wrench"></i> Qué incluye cada mantenimiento</h3>
+                    <p class="panel-subnota">Pasa el cursor sobre una tarjeta (o tócala en el celular) para ver el detalle del servicio.</p>
+                    <div class="flip-grid">
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox Clásico, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-xbox"></i></span>
+                                    <h4>Xbox Clásico</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Xbox Clásico</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox 360, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-xbox"></i></span>
+                                    <h4>Xbox 360</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Xbox 360</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox One, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/xbox-one.png" alt="" loading="lazy" />
+                                    <h4>Xbox One</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Xbox One</h4>
+                                    <p>Mantenimiento completo, limpieza de componentes, cambio de pasta térmica y revisión de HDD.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox Series X, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/xbox-series-x.png" alt="" loading="lazy" />
+                                    <h4>Xbox Series X</h4>
+                                    <span class="precio-badge">$800</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Xbox Series X</h4>
+                                    <p>Limpieza de disipador, cambio de pasta térmica, revisión de fuente de poder y ventilación.</p>
+                                    <span class="precio-badge">$800</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox Series S, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-xbox"></i></span>
+                                    <h4>Xbox Series S</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Xbox Series S</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ---- NINTENDO ---- -->
                 <div class="marca-panel" id="panel-nintendo" role="tabpanel" aria-labelledby="tab-nintendo" hidden>
+                    <h3 class="panel-subtitulo"><i class="fas fa-images"></i> Modelos que reparamos</h3>
                     <div class="catalogo-grid marca-panel-grid">
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/BbqYrvo.jpeg" alt="SNES, Nintendo 64 y GameCube" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/nintendo-snes-n64-gcn.jpg" alt="SNES, Nintendo 64 y GameCube" loading="lazy" tabindex="0" />
                             <figcaption>SNES · N64 · GameCube</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/t5j9bP2.jpeg" alt="Wii, Wii U y Switch" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/nintendo-wii-wiiu-switch.jpg" alt="Wii, Wii U y Switch" loading="lazy" tabindex="0" />
                             <figcaption>Wii · Wii U · Switch</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/WYtSsjf.jpeg" alt="Switch Lite, Switch OLED y Switch 2" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/nintendo-switch-lite-oled-2.jpg" alt="Switch Lite, Switch OLED y Switch 2" loading="lazy" tabindex="0" />
                             <figcaption>Switch Lite · Switch OLED · Switch 2</figcaption>
                         </figure>
                     </div>
-                    <div class="marca-panel-precio">
-                        <h3><i class="fas fa-tags"></i> Precio de mantenimiento</h3>
+                    <h3 class="panel-subtitulo"><i class="fas fa-tags"></i> Precios de mantenimiento</h3>
+                    <div class="tabla-wrap">
                         <div class="tabla-scroll">
                             <table class="tabla-precios">
                                 <thead>
                                     <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>SNES</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>N64</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>GameCube</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>Wii U</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>Switch Lite / OLED / 2</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>SNES</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>N64</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>GameCube</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Wii U</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>Switch Lite / OLED / 2</td><td>3 meses</td><td>$500</td></tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <h3 class="panel-subtitulo"><i class="fas fa-screwdriver-wrench"></i> Qué incluye cada mantenimiento</h3>
+                    <p class="panel-subnota">Pasa el cursor sobre una tarjeta (o tócala en el celular) para ver el detalle del servicio.</p>
+                    <div class="flip-grid">
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de SNES, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fas fa-gamepad"></i></span>
+                                    <h4>SNES</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>SNES</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Nintendo 64, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fas fa-gamepad"></i></span>
+                                    <h4>Nintendo 64</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Nintendo 64</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de GameCube, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/gamecube.png" alt="" loading="lazy" />
+                                    <h4>GameCube</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>GameCube</h4>
+                                    <p>Mantenimiento preventivo completo, limpieza interna, cambio de pasta térmica y revisión de lector óptico.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Wii U, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fas fa-gamepad"></i></span>
+                                    <h4>Wii U</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Wii U</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Switch Lite / OLED / 2, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/nintendo-switch.png" alt="" loading="lazy" />
+                                    <h4>Switch Lite / OLED / 2</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>Switch Lite / OLED / 2</h4>
+                                    <p>Limpieza profunda, revisión de ventilación, cambio de pasta térmica y diagnóstico de batería.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ---- PLAYSTATION ---- -->
                 <div class="marca-panel" id="panel-playstation" role="tabpanel" aria-labelledby="tab-playstation" hidden>
+                    <h3 class="panel-subtitulo"><i class="fas fa-images"></i> Modelos que reparamos</h3>
                     <div class="catalogo-grid marca-panel-grid" style="grid-template-columns: repeat(2, 1fr);">
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/mTdjC1i.jpeg" alt="PS1, PS2 y PS3" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/playstation-ps1-ps2-ps3.jpg" alt="PS1, PS2 y PS3" loading="lazy" tabindex="0" />
                             <figcaption>PS1 · PS2 · PS3</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/bJlBdMu.jpeg" alt="PS3 Fat y PS3 Slim" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/playstation-ps3-fat-slim.jpg" alt="PS3 Fat y PS3 Slim" loading="lazy" tabindex="0" />
                             <figcaption>PS3 Fat · PS3 Slim</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/zGbsfzv.jpeg" alt="PS4 Fat y PS4 Slim" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/playstation-ps4-fat-slim.jpg" alt="PS4 Fat y PS4 Slim" loading="lazy" tabindex="0" />
                             <figcaption>PS4 Fat · PS4 Slim</figcaption>
                         </figure>
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/7YLSZYm.jpeg" alt="PS4 Pro y PS5 Fat" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/playstation-ps4pro-ps5fat.jpg" alt="PS4 Pro y PS5 Fat" loading="lazy" tabindex="0" />
                             <figcaption>PS4 Pro · PS5 Fat</figcaption>
                         </figure>
                         <figure class="catalogo-card catalogo-card--destacada" style="grid-column: 1 / -1;">
-                            <img src="https://i.imgur.com/PjpjPUg.jpeg" alt="PS5 Pro" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/playstation-ps5-pro.jpg" alt="PS5 Pro" loading="lazy" tabindex="0" />
                             <figcaption>PS5 Pro</figcaption>
                         </figure>
                     </div>
-                    <div class="marca-panel-precio">
-                        <h3><i class="fas fa-tags"></i> Precio de mantenimiento</h3>
+                    <h3 class="panel-subtitulo"><i class="fas fa-tags"></i> Precios de mantenimiento</h3>
+                    <div class="tabla-wrap">
                         <div class="tabla-scroll">
                             <table class="tabla-precios">
                                 <thead>
                                     <tr><th>Servicio</th><th>Garantía</th><th>Precio</th></tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>PS1</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>PS2</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>PS3</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>PS4</td><td>3 meses</td><td>$500</td></tr>
-                                    <tr><td>PS5</td><td>3 meses</td><td>$800</td></tr>
+                                <tr><td>PS1</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>PS2</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>PS3</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>PS4</td><td>3 meses</td><td>$500</td></tr>
+                                <tr><td>PS5</td><td>3 meses</td><td>$800</td></tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                    <h3 class="panel-subtitulo"><i class="fas fa-screwdriver-wrench"></i> Qué incluye cada mantenimiento</h3>
+                    <p class="panel-subnota">Pasa el cursor sobre una tarjeta (o tócala en el celular) para ver el detalle del servicio.</p>
+                    <div class="flip-grid">
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 1, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/ps1.png" alt="" loading="lazy" />
+                                    <h4>PlayStation 1</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>PlayStation 1</h4>
+                                    <p>Mantenimiento de lector óptico, limpieza de placa y revisión de fuente de poder.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 2, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-playstation"></i></span>
+                                    <h4>PlayStation 2</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>PlayStation 2</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 3, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-playstation"></i></span>
+                                    <h4>PlayStation 3</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>PlayStation 3</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 4, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <span class="flip-icon" aria-hidden="true"><i class="fa-brands fa-playstation"></i></span>
+                                    <h4>PlayStation 4</h4>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>PlayStation 4</h4>
+                                    <p>Mantenimiento preventivo: se desarma y limpia la consola componente por componente, con revisión general de funcionamiento.</p>
+                                    <span class="precio-badge">$500</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 5, ver detalle">
+                            <div class="flip-card-inner">
+                                <div class="flip-card-front">
+                                    <img src="assets/catalogo/ps5-slim.png" alt="" loading="lazy" />
+                                    <h4>PlayStation 5</h4>
+                                    <span class="precio-badge">$800</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                    <span class="flip-hint">Ver detalle</span>
+                                </div>
+                                <div class="flip-card-back">
+                                    <h4>PlayStation 5</h4>
+                                    <p>Limpieza de disipador, cambio de metal líquido, revisión de ventiladores y puertos.</p>
+                                    <span class="precio-badge">$800</span>
+                                    <span class="flip-garantia"><i class="fas fa-shield-alt"></i> Garantía 3 meses</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- ---- LAPTOPS ---- -->
                 <div class="marca-panel" id="panel-laptops" role="tabpanel" aria-labelledby="tab-laptops" hidden>
+                    <h3 class="panel-subtitulo"><i class="fas fa-images"></i> Modelos que reparamos</h3>
                     <div class="catalogo-grid catalogo-grid--single marca-panel-grid">
                         <figure class="catalogo-card">
-                            <img src="https://i.imgur.com/xkVLRHO.jpeg" alt="Laptops básicas, de gama media, gamer básica y gamer alta" loading="lazy" tabindex="0" />
+                            <img src="assets/catalogo/laptops.jpg" data-fallbacks="assets/catalogo/laptops.png,assets/catalogo/laptops.webp,assets/catalogo/laptops.jpeg,assets/catalogo/laptop.jpg,assets/catalogo/laptop.png,assets/dispositivos/laptop.jpg" alt="Laptops básicas, de gama media, gamer básica y gamer alta" loading="lazy" tabindex="0" />
                             <figcaption>Básicas · Gama media · Gama alta</figcaption>
                         </figure>
                     </div>
+                    <h3 class="panel-subtitulo"><i class="fas fa-screwdriver-wrench"></i> Mantenimiento</h3>
                     <p class="marca-panel-nota">
                         <i class="fas fa-circle-info"></i>
-                        El precio de mantenimiento para laptops se cotiza según marca, modelo y diagnóstico. Escríbenos y te damos un costo exacto.
+                        El mantenimiento de laptops se cotiza según marca, modelo y diagnóstico. Escríbenos y te damos un costo exacto.
                     </p>
+                    <div class="panel-cta">
+                        <a href="https://wa.me/5217721646924" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Cotizar por WhatsApp</a>
+                    </div>
                 </div>
 
             </div>
@@ -279,114 +553,6 @@
                 <i class="fas fa-circle-info"></i>
                 Precios de referencia para mantenimiento preventivo; pueden variar según el diagnóstico y el modelo específico del equipo. Consulta el costo exacto por WhatsApp o al llevar tu equipo a valoración.
             </p>
-        </div>
-    </section>
-
-    <!-- ========== MANTENIMIENTOS DESTACADOS (tarjetas volteables) ========== -->
-    <section class="section barras-destacadas" id="mantenimientos-destacados" style="background: rgba(10,25,47,0.5); border-top: 1px solid rgba(19,178,251,0.1); border-bottom: 1px solid rgba(19,178,251,0.1);">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="neon-glow" style="color: #fff;">Mantenimientos destacados</h2>
-                <p>Pasa el cursor sobre una tarjeta (o tócala en el celular) para ver el detalle del servicio.</p>
-            </div>
-
-            <div class="flip-grid">
-                <!-- GameCube -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Nintendo GameCube, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/ZX030FJ.png" alt="" loading="lazy" />
-                            <h4>Nintendo GameCube</h4>
-                            <span class="precio-badge">$500</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Mantenimiento preventivo completo, limpieza interna, cambio de pasta térmica y revisión de lector óptico.</p>
-                            <span class="precio-badge">$500</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nintendo Switch -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Nintendo Switch, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/Ekb2fGg.png" alt="" loading="lazy" />
-                            <h4>Nintendo Switch</h4>
-                            <span class="precio-badge">$500</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Limpieza profunda, revisión de ventilación, cambio de pasta térmica y diagnóstico de batería.</p>
-                            <span class="precio-badge">$500</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PS1 -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 1, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/WX6GVgf.png" alt="" loading="lazy" />
-                            <h4>PlayStation 1</h4>
-                            <span class="precio-badge">$500</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Mantenimiento de lector óptico, limpieza de placa y revisión de fuente de poder.</p>
-                            <span class="precio-badge">$500</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PS5 Slim -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de PlayStation 5 Slim, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/aGWArbo.png" alt="" loading="lazy" />
-                            <h4>PlayStation 5 Slim</h4>
-                            <span class="precio-badge">$800</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Limpieza de disipador, cambio de metal líquido, revisión de ventiladores y puertos.</p>
-                            <span class="precio-badge">$800</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Xbox One -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox One, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/6ygQU2x.png" alt="" loading="lazy" />
-                            <h4>Xbox One</h4>
-                            <span class="precio-badge">$500</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Mantenimiento completo, limpieza de componentes, cambio de pasta térmica y revisión de HDD.</p>
-                            <span class="precio-badge">$500</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Xbox Series X -->
-                <div class="flip-card" tabindex="0" role="button" aria-pressed="false" aria-label="Mantenimiento de Xbox Series X, ver detalle">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <img src="https://i.imgur.com/U4k9fUl.png" alt="" loading="lazy" />
-                            <h4>Xbox Series X</h4>
-                            <span class="precio-badge">$800</span>
-                            <span class="flip-hint">Ver detalle</span>
-                        </div>
-                        <div class="flip-card-back">
-                            <p>Limpieza de disipador, cambio de pasta térmica, revisión de fuente de poder y ventilación.</p>
-                            <span class="precio-badge">$800</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -497,13 +663,28 @@
             selectTab(initial);
         }
 
+        // ---- Imágenes con respaldo: si el archivo no carga, prueba otros nombres ----
+        document.querySelectorAll('img[data-fallbacks]').forEach(function (img) {
+            var options = img.getAttribute('data-fallbacks').split(',');
+            img.addEventListener('error', function () {
+                var next = options.shift();
+                if (next) { img.src = next; }
+            });
+            // Si ya falló antes de registrar el evento, se reintenta
+            if (img.complete && img.naturalWidth === 0 && options.length) {
+                img.src = options.shift();
+            }
+        });
+
         // ---- Tarjetas volteables ----
         document.querySelectorAll('.flip-card').forEach(function (card) {
             function toggle() {
                 var flipped = card.classList.toggle('is-flipped');
                 card.setAttribute('aria-pressed', flipped ? 'true' : 'false');
             }
-            card.addEventListener('click', toggle);
+            var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+            // Con mouse, el volteo lo hace el hover (CSS); con dedo, el toque.
+            card.addEventListener('click', function () { if (!canHover) { toggle(); } });
             card.addEventListener('keydown', function (e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
